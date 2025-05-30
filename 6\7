@@ -1,0 +1,930 @@
+=== Часть 6\7 ====
+
+Fn = function () {
+        typeof window.GM_deleteValue > "u" &&
+          ((window.GM_addStyle = (t) => {
+            let e = document.createElement("style");
+            (e.textContent = t), document.head.appendChild(e);
+          }),
+          (window.GM_deleteValue = (t) => {
+            localStorage.removeItem(t);
+          }),
+          (window.GM_getValue = (t, e) => {
+            let n = localStorage.getItem(t);
+            if (n === null) return e;
+            let o = n.charAt(0),
+              r = n.slice(1);
+            switch (o) {
+              case "b":
+                return r === "true";
+              case "n":
+                return Number(r);
+              default:
+                return r;
+            }
+          }),
+          (window.GM_log = (t) => {
+            console.log(t);
+          }),
+          (window.GM_openInTab = (t) => {
+            window.open(t, "_blank");
+          }),
+          (window.GM_registerMenuCommand = (t, e) => {}),
+          (window.GM_setValue = (t, e) => {
+            let n;
+            if (typeof e == "boolean") n = "b";
+            else if (typeof e == "number") n = "n";
+            else if (typeof e == "string") n = "s";
+            else throw new Error("Unsupported value type");
+            let o = `${n}${e}`;
+            localStorage.setItem(t, o);
+          }));
+        function getCurrentLocation() {
+          var t = $(".heading:first h2 span"),
+            e =
+              t.length > 0
+                ? t[0].getAttribute("class")
+                : $(".heading:first h2").html();
+          return e;
+        }
+        function getRealDoc() {
+          var t = top.document.getElementById("game-frame");
+          return t ? t.contentWindow.document : top.document;
+        }
+        function renderEatDopsButton() {
+          let t = Adoc.getElementById("dopings-accordion");
+          if (
+            !Adoc.getElementById("eat-button") &&
+            getCurrentLocation() === "pers" &&
+            t
+          ) {
+            let e = document.createElement("div");
+            (e.className = "button"),
+              (e.id = "eat-button"),
+              (e.innerHTML = `
+        <span class="f">
+          <i class="rl"></i>
+          <i class="bl"></i>
+          <i class="brc"></i>
+          <div id="aicheck" class="c">\u041E\u0431\u043E\u0436\u0440\u0430\u0442\u044C\u0441\u044F</div>
+        </span>
+      `),
+              $('div[htab="dopings"]').before(e),
+              e.addEventListener("click", selectDops, !1),
+              setTimeout(() => {
+                eatDops();
+              }, 1e3);
+          }
+        }
+        function selectDops() {
+          if (
+            getCurrentLocation() == "pers" &&
+            Adoc.getElementById("dopings-accordion")
+          ) {
+            var t = document.createElement("DIV");
+            t.setAttribute(
+              "style",
+              "display: block; top: 300px; width: 468px;"
+            ),
+              t.setAttribute("class", "alert  alert1"),
+              (t.id = "alert-main");
+            var e = document.createElement("DIV");
+            e.setAttribute("class", "padding"), t.appendChild(e);
+            var n = document.createElement("H2");
+            (n.innerHTML =
+              "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0434\u043E\u043F\u044B"),
+              e.appendChild(n);
+            var o = document.createElement("DIV");
+            o.setAttribute("class", "data");
+            var r = document.createElement("DIV");
+            o.appendChild(r), e.appendChild(o);
+            for (
+              var a = Adoc.getElementById("dopings-accordion").cloneNode(!0),
+                s = a.getElementsByClassName("object-thumb");
+              s.length > 0;
+
+            ) {
+              var c = document.createElement("DIV");
+              c.setAttribute(
+                "style",
+                "margin: 4px 1px 2px 2px;height: 72px; width: 72px;float:left;"
+              ),
+                c.setAttribute("name", "backGroundDiv");
+              var d = s[0].getElementsByClassName("action")[0],
+                l = s[0]
+                  .getElementsByClassName("padding")[0]
+                  .getElementsByTagName("img")[0];
+              if (d) {
+                if (d.className == "action disabled")
+                  c.style.backgroundColor = "red";
+                else {
+                  var p =
+                    "$.get('/player/json/" +
+                    d.getAttribute("data-action") +
+                    "/" +
+                    l.getAttribute("data-id") +
+                    "/', function(){moswar.showPopup('\u0413\u043E\u0442\u043E\u0432\u043E',m.items[" +
+                    l.getAttribute("data-id") +
+                    "].info.title, 2000);GM_setValue('listDopsN', Number(GM_getValue('listDopsN', ''))-1);if(Number(GM_getValue('listDopsN', ''))<1) {AngryAjax.goToUrl('/player/');}})";
+                  c.setAttribute("rel", p),
+                    c.addEventListener(
+                      "click",
+                      function () {
+                        onClickBackGroundDiv(this);
+                      },
+                      !1
+                    );
+                }
+                s[0].getElementsByClassName("padding")[0].removeChild(d);
+              }
+              s[0].setAttribute(
+                "style",
+                "margin: 2px 2px 2px 2px;height: 68px;"
+              ),
+                c.appendChild(s[0]),
+                r.appendChild(c);
+            }
+            var d = document.createElement("DIV");
+            d.setAttribute("class", "actions"),
+              d.setAttribute("style", "clear: both;");
+            var g = document.createElement("DIV");
+            g.setAttribute("class", "button"),
+              (g.innerHTML =
+                '<span class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c">\u041E\u041A</div></span>');
+            var u = document.createElement("DIV");
+            u.setAttribute("class", "button"),
+              (u.innerHTML =
+                '<span class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c">\u041E\u0442\u043C\u0435\u043D\u0430</div></span>'),
+              d.appendChild(g),
+              d.appendChild(u),
+              o.appendChild(d),
+              Adoc.body.appendChild(t),
+              u.addEventListener(
+                "click",
+                function () {
+                  Adoc.body.removeChild(Adoc.getElementById("alert-main"));
+                },
+                !1
+              ),
+              g.addEventListener("click", createListDops, !1);
+          }
+        }
+        function createListDops() {
+          for (
+            var t = Adoc.getElementsByName("backGroundDiv"), e = "", n = 0;
+            n < t.length;
+            n++
+          )
+            t[n].style.backgroundColor == "green" &&
+              (e += t[n].getAttribute("rel") + "#|#");
+          (e = e.substring(0, e.length - 3)),
+            GM_setValue("listDops", e),
+            GM_setValue("listDopsN", e.split("#|#").length),
+            Adoc.body.removeChild(Adoc.getElementById("alert-main")),
+            eatDops();
+        }
+        function onClickBackGroundDiv(t) {
+          t.style.backgroundColor =
+            t.style.backgroundColor == "green" ? "transparent" : "green";
+        }
+        function eatDops() {
+          var listDops = GM_getValue("listDops", "");
+          if (listDops) {
+            var codeBlocks = listDops.split("#|#"),
+              codeBlock = codeBlocks[0],
+              cl = codeBlocks.length;
+            eval(codeBlock),
+              codeBlocks.shift(),
+              codeBlocks[0]
+                ? (GM_setValue("listDops", codeBlocks.join("#|#")),
+                  setTimeout(function () {
+                    eatDops();
+                  }, 1e3))
+                : GM_setValue("listDops", "");
+          }
+        }
+        var Adoc = getRealDoc();
+        renderEatDopsButton();
+      };
+    function ut() {
+      function t(n) {
+        let r = /^(\d\d).(\d\d).(\d{4}) (\d\d):(\d\d)$/.exec(n);
+        if (r) {
+          let [a, s, c, l, p, d] = r;
+          return new Date(Date.UTC(l, c - 1, s, p - 3, d, 59));
+        }
+        return null;
+      }
+      function e() {
+        let n = 0,
+          o = 0,
+          r = async (a) => {
+            let s = $(".help").find(`.brown:contains("${a}")`);
+            if (s.length > 0) {
+              let c = s.html().split("\u0434\u043E ")[1];
+              c && (localStorage.candyExpiration = c.split(" \u2014")[0]);
+            }
+          };
+        if (
+          (r(
+            "\u041A\u043E\u043D\u0444\u0435\u0442\u0430 \xAB\u0423\u043C\u043D\u0430\u044F\xBB"
+          ),
+          r(
+            "\u041A\u043E\u043D\u0444\u0435\u0442\u0430 \xAB\u0413\u043B\u0443\u043F\u0430\u044F\xBB"
+          ),
+          localStorage.candyExpiration)
+        ) {
+          let a = Number($("#servertime").attr("rel")),
+            s = t(localStorage.candyExpiration);
+          s && ((o = Math.round(s.getTime() / 1e3)), (n = o - a));
+        }
+        n < 0 && (n = 0),
+          !$("#candyTimer")[0] &&
+            n > 0 &&
+            ($("#personal")
+              .prepend(`<span id="candyTimer" style="position:absolute;top: -11px;left: 46px;padding: 2px;background-color:rgb(255, 227, 179);border-radius: 8px;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;border: 2px solid rgb(240 114 53);">
+          <span style="display: flex; gap: 2px;" class="expa"><i></i><b id="countdownTimer" timer="10" endtime="${o}"></b></span>
+        </span>`),
+            countdown("#countdownTimer", 0, !1, async function () {
+              await bt();
+            }),
+            countdown("#countdownTimer", 0));
+      }
+      e();
+    }
+    function Fe() {
+      (typeof window.localStorage.OptionsVar > "u" ||
+        window.localStorage.OptionsVar == null) &&
+        (window.localStorage.OptionsVar = JSON.stringify({ f_pickabil: "u" }));
+      var t = JSON.parse(window.localStorage.OptionsVar);
+      if (location.pathname.search(/^\/fight/) !== -1) {
+        let o = function () {
+            let c = JSON.parse(window.sessionStorage.fightLog),
+              l = parseInt($(".block-rounded").find(".current").text(), 10);
+            t.f_hidedead && $(".list-users").find(".dead").remove();
+            for (let p in c) {
+              if (
+                p ===
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]"
+              ) {
+                $(".log")
+                  .find(".log-panel")
+                  .append(`<div class="fight-log">${c[p].Turns}</div>`);
+                continue;
+              }
+              let d = "",
+                g = "";
+              for (let u in z)
+                if (u in c[p]) {
+                  let w = c[p][u],
+                    b = 0;
+                  u === "Hamsters"
+                    ? (b = w.Turns)
+                    : ((b = w.Turns - (l - w.Step)),
+                      (b = b > 0 && b <= w.Turns ? b : 0)),
+                    b > 0 &&
+                      ((d += z[u].image),
+                      b > 1 && (d += `<small>${b}</small>`)),
+                    "cnt" in w &&
+                      (g += `
+                <div style="display: inline-block; margin: 6px 0;">
+                  ${z[u].image}
+                  <small style="margin-top: -3px; display: block; position: absolute;">
+                    #${w.cnt}
+                  </small>
+                </div>`);
+                }
+              if (d || g) {
+                let u = $("#fightGroupForm")
+                  .find(`.user:contains("${p}")`)
+                  .first();
+                d && u.addClass("fight-log").prepend(`${d}<br>`),
+                  g &&
+                    u.parent().append(`
+                <br>
+                <div class="fight-log cnt" style="position: absolute; margin-top: -10px;">
+                  ${g}
+                </div>
+                <div style="height: 20px;"></div>
+              `);
+              }
+            }
+          },
+          r = function () {
+            let c = location.href.split("/")[2],
+              l = parseInt($(".block-rounded").find(".current").text(), 10),
+              p = window.sessionStorage;
+            (c !== p.FightId || !p.fightLog || p.fightLog === "undefined") &&
+              ((p.FightId = c), (p.fightLog = JSON.stringify({})));
+            var d = JSON.parse(window.sessionStorage.fightLog),
+              g = $(".block-rounded").find(".current").text(),
+              u = "",
+              w = "";
+            if (
+              $(".group")
+                .text()
+                .search(/Избранный/) !== -1
+            ) {
+              var b =
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439\xA0[??]";
+              d["\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]"] =
+                { Turns: "", Step: g };
+            }
+            if (
+              $(".group")
+                .text()
+                .includes(
+                  "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439"
+                )
+            ) {
+              let y =
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439\xA0[??]";
+              d[y] = { Turns: "", Step: l };
+            }
+            function M(y, x, T, _, S) {
+              y = y.match(/(.{1,20})\s(\[.+?\])/);
+              let h = y ? `${y[1]}${y[2]}` : null;
+              if (!h) return;
+              if (
+                h ===
+                  "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]" &&
+                _ !== "-1"
+              ) {
+                d[h].Turns += S === "#" ? S : `<br>${S}`;
+                return;
+              }
+              (d[h] = d[h] || {}), (d[h][x] = d[h][x] || {});
+              let F = d[h][x];
+              if (S === "#") {
+                F.cnt = "#";
+                return;
+              }
+              if (x === "Hamshams") {
+                (d[h].Hamsters = d[h].Hamsters || { Turns: "0" }),
+                  (d[h].Hamsters.Turns =
+                    parseInt(d[h].Hamsters.Turns, 10) + parseInt(_, 10));
+                return;
+              }
+              (F.Step = T),
+                (F.Turns = _),
+                z[x].cnt &&
+                  ((F.cnt = F.cnt ? F.cnt + 1 : 1),
+                  (F.Steps = F.Steps || []),
+                  F.Steps.includes(T) || F.Steps.push(T));
+            }
+            function q(y, x, T) {
+              let _ = [
+                  "Hamsters",
+                  "Snake",
+                  "superhit6",
+                  "MadTrump",
+                  "totem",
+                  "Knockout",
+                ],
+                S,
+                h = null;
+              switch (x) {
+                case "f":
+                  S = $(y)
+                    .find('[class^="name-"]')
+                    .first()
+                    .text()
+                    .match(/(.+?\[.+?\])/);
+                  break;
+                case "l":
+                  S = $(y)
+                    .find('[class^="name-"]')
+                    .last()
+                    .text()
+                    .match(/(.+?\[.+?\])/);
+                  break;
+                case "et":
+                  for (h = $(y).next(); !h.is(".easytarget"); ) h = h.next();
+                  S = q(h, "f", T);
+                  break;
+                case "h":
+                case "hh":
+                  (h = Ue(y)),
+                    h
+                      .text()
+                      .includes(
+                        "\u043E\u0442\u043F\u0440\u0443\u0436\u0438\u043D\u0438\u0432\u0430\u0435\u0442 \u0443\u0434\u0430\u0440"
+                      )
+                      ? (S = q(h, x === "h" ? "f" : "l", T))
+                      : (S = q(h, x === "h" ? "l" : "f", T));
+                  break;
+                default:
+                  break;
+              }
+              return (
+                S &&
+                  S[1] === b &&
+                  _.includes(T) &&
+                  (w = `<small>${
+                    h
+                      .text()
+                      .replace(/\s{2,}/g, " ")
+                      .match(/^\d?([\s\S]+?\][\s\S]+?\])/)[1]
+                  }</small>`),
+                S
+              );
+            }
+            function Ue(y) {
+              let x = $(y).prev();
+              for (;;) {
+                let T = x.text();
+                if (
+                  T.match(/\[.+?\]/g)?.length > 1 &&
+                  !T.match(/змея|Тесла|дракон|Ночной страж/)
+                )
+                  break;
+                x = x.prev();
+              }
+              return x;
+            }
+            let Wt = $("#fightGroupForm").find(".fight-log");
+            for (let y in z) {
+              let { fstr: x, cnt: T, pn: _, turns: S } = z[y];
+              x &&
+                Wt.find(x).each(function () {
+                  let h = q(this, _, y);
+                  h || (h = q(this, _ === "l" ? "f" : "l", y)),
+                    h &&
+                      M(
+                        h[1],
+                        y,
+                        l,
+                        S ||
+                          $(this)
+                            .text()
+                            .match(/\s(\d)\s/)[1],
+                        w || ""
+                      );
+                });
+            }
+            Wt.find('.text:contains("\u0411\u0430\u0439\u043A ")').each(
+              function () {
+                let y = $(this)
+                  .text()
+                  .match(/Байк\s.+?оглушает.+?\[.+?\]/g);
+                y &&
+                  y.forEach((x) => {
+                    let T = x.match(/оглушает\s(.+?\[.+?\])/)[1],
+                      _ = T === b ? `<small>${x}</small>` : "";
+                    M(T, "Bike", l, "1", _);
+                  });
+              }
+            ),
+              (p.fightLog = JSON.stringify(d));
+          },
+          a = function (c) {
+            document.getElementById("sign_kick") == null &&
+              (document.getElementById("useabl-" + c).click(),
+              t.f_autokick &&
+                ($("#fightAction").find("button").click(),
+                $("#useabl-" + c)
+                  .parents("label")
+                  .find("img")
+                  .attr("style", "filter:contrast(2.0)"),
+                $("#f_autokick").prop("checked", !1),
+                (t.f_autokick = 0),
+                (window.localStorage.OptionsVar = JSON.stringify(t))),
+              $(".log-panel").attr("id", "sign_kick"));
+          },
+          s = function () {
+            if ($("#sign_ufl").length != 1) {
+              if (
+                (r(),
+                o(),
+                $(".fight-log")
+                  .find(
+                    '[class*="icon"]:not(.icon-bang-poison):not(.icon-antigranata2):not(.question-icon):not(.icon-rocket-1):not(.icon-rocket-2):not(.icon-cheese):not(.icon-helmet):not(.icon-bear):not(.icon-antigranata):not(.icon-forcejoin):not(.icon-heal):not(.antimrr):not(.serial):not(.icon-bang):not(.icon-superhit):not(.icon-reflect):not(.icon-chance):not(.icon-dodge):not(.icon-secondhit):not(.icon-thirdhit):not(.icon-katyusha):not(.icon-weakening-after-madness):not(.icon-foggranade)'
+                  )
+                  .each(function () {
+                    var M = $(this)
+                      .next()
+                      .text()
+                      .match(/(.*).\[/);
+                    if (M !== null) {
+                      var q = $(".group")
+                        .find('li .user:contains("' + M[1] + '")')
+                        .first();
+                      $(q).is(".fight-log")
+                        ? $(q).children("br").first().before($(this).clone())
+                        : $(q)
+                            .addClass("fight-log")
+                            .prepend("<br>")
+                            .prepend($(this).clone());
+                    }
+                  }),
+                t.f_topmylog)
+              ) {
+                var c = $("ul.fight-log").find(".text");
+                $('<div style="border:blue 1px solid;"></div>')
+                  .prepend(c.find("p.attack_i, p.attack_me").clone())
+                  .prependTo(c);
+              }
+              if (!$(".group2 i").is(".npc")) {
+                var l = $(".list-users--right"),
+                  p = l.find("li.alive");
+                t.f_topmig &&
+                  l
+                    .prepend(
+                      p.filter(
+                        ':contains("\u041C\u0438\u0433\u0440\u0430\u043D\u0442 ")'
+                      )
+                    )
+                    .prepend(
+                      p.filter(':contains("\u041C\u0435\u0441\u044C\u0435 ")')
+                    ),
+                  t.f_topmadness && l.prepend(p.has(".deaf")),
+                  t.f_bottomomon &&
+                    (l.find("li.dead").length == 0
+                      ? l.append(
+                          p.filter(
+                            ':contains("\u041E\u043C\u043E\u043D\u043E\u0432\u0435\u0446 ")'
+                          )
+                        )
+                      : l
+                          .find("li.dead")
+                          .first()
+                          .before(
+                            p.filter(
+                              ':contains("\u041E\u043C\u043E\u043D\u043E\u0432\u0435\u0446 ")'
+                            )
+                          ));
+              }
+              // ==== Кнопки ускорения боя и фильтрация логов в боях ======
+
+var d = $("#fightGroupForm"),
+                g = $("#fightAction"),
+                u = d.find(".pagescroll").clone();
+              if (!$(".block-rounded .cleanup-logs-btn").length) {
+  // ==== Кусок для фильтрации логов в боях =====
+
+            let isCleanupActive = true; // Фильтрация включена по умолчанию
+          let originalLogs = null; // Храним копию исходных логов
+
+    var w = k({
+      text: "\u{1F9F9} \u{1F9FD}", // Эмодзи метлы и губки
+      onClick: function() {
+      isCleanupActive = !isCleanupActive;
+      if (isCleanupActive) {
+        originalLogs = $(".log > ul.fight-log .text").clone(true);
+        try {
+          Ae(); // Фильтруем логи
+          $(w).addClass("active");
+        } catch (e) {
+          console.error("Error in Ae():", e);
+        }
+      } else {
+        if (originalLogs) {
+          let e = $(".log > ul.fight-log .text");
+          e.empty();
+          e.append(originalLogs.clone(true));
+          $(".me-logs, .ability-log-container").remove();
+        }
+        $(w).removeClass("active");
+      }
+    },
+    title: "\u041F\u043E\u0447\u0438\u0441\u0442\u044C \u043B\u043E\u0433\u0438 \u043E\u0442 \u041D\u041F\u0421",
+  });
+  $(w).addClass("cleanup-logs-btn").css({ margin: "2px 6px" });
+  if (isCleanupActive) {
+    originalLogs = $(".log > ul.fight-log .text").clone(true);
+    try {
+      Ae(); // Инициализируем фильтрацию
+      $(w).addClass("active");
+    } catch (e) {
+      console.error("Error in Ae() on init:", e);
+    }
+  }
+
+  // Наблюдатель за обновлением логов
+  const target = document.querySelector(".log > ul.fight-log .text");
+  if (target) {
+    const observer = new MutationObserver(() => {
+      if (isCleanupActive) {
+        originalLogs = $(".log > ul.fight-log .text").clone(true);
+        try {
+          Ae();
+        } catch (e) {
+          console.error("Error in Ae() during logs update:", e);
+        }
+      }
+    });
+    observer.observe(target, { childList: true, subtree: true });
+  } else {
+    console.warn("Logs container (.log > ul.fight-log .text) not found!");
+  }
+             //  ===== Кусок для автобоя наверное =====
+          var b = k({
+            text: "\u23E9",
+            onClick: async () => await G(),
+            title:
+            "\u041F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u044C \u041D\u041F\u0421 \u0431\u043E\u0439",
+          });
+          $(b).addClass("skip-npc-fight-btn").css({ margin: "2px 6px" }),
+            u.children().first().append(w),
+            u.children().first().append(b);
+          }
+
+    // ==== Конец кнопок автобой и фильтр логов ======
+              d.prepend(u),
+                $(".superhit-wrapper").length !== 0 &&
+                  $(".superhit-wrapper").css("zoom", "0.8"),
+                g.append(
+                  '<i id="fight-action-reload" class="icon reload-icon" title="\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0445\u043E\u0434"></i>'
+                ),
+                $("#fight-action-reload").on("click", function () {
+                  g
+                    .show()
+                    .find("button")
+                    .show()
+                    .removeClass("disabled")
+                    .prop("disabled", !1),
+                    g.find(".waiting").hide();
+                }),
+                $("#main")
+                  .find("span.boj")
+                  .on("click", function () {
+                    AngryAjax.goToUrl(
+                      location.pathname.replace(/(\/fight\/\d+?\/)\d+?\//, "$1")
+                    );
+                  }),
+                d.find("table").attr("id", "sign_ufl");
+            }
+          };
+        var e = ["148", "-1", "-65", "59", "155", "146"];
+        if (
+          !$(".group2 i").is(".npc") &&
+          ($(".group1 i").is(".arrived") ||
+            $(".group1 img").is('[class^="team-"]')) &&
+          !$("h3").is(".welcome-groupfight-flag") &&
+          $("#fightGroupForm").find("ul.fight-log > li > h4").text() ==
+            "\u041D\u0430\u0447\u0430\u043B\u043E" &&
+          $("#fightAction").find("button").is(":visible")
+        ) {
+          switch (t.f_pickabil) {
+            case "u":
+              document.getElementById("useabl--1") !== null && a("-1"),
+                document.getElementById("useabl--65") !== null && a("-65"),
+                document.getElementById("useabl-148") !== null && a("148");
+              break;
+            case "o":
+              document.getElementById("useabl-59") !== null && a("59"),
+                document.getElementById("useabl-146") !== null && a("146");
+              break;
+            case "a":
+              document.getElementById("useabl-155") !== null && a("155");
+              break;
+          }
+          if (document.getElementById("sign_kick") == null) {
+            for (var n = 0; n < e.length; n++)
+              if (document.getElementById("useabl-" + e[n]) !== null) {
+                a(e[n]);
+                break;
+              }
+          }
+        }
+        s(), $(".log-panel").prepend($(".fight-slots-actions"));
+      }
+    }
+    async function Ct() {
+      return new Promise((t) => {
+        AngryAjax.goToUrl("/alley/"),
+          $(document).one("ajaxStop", () => {
+            let e = location.pathname;
+            t(/\/fight\/(?!.*\/alley\/)/.test(e));
+          });
+      });
+    }
+    function Dt() {
+      CasinoKubovich.rotate = function () {
+        if (((CasinoKubovich.rotateInterval = null), !CasinoKubovich.mayRotate))
+          return !1;
+        CasinoKubovich.mayRotate = !1;
+        var t = parseInt($("#fishki-balance-num").html().replace(",", "")),
+          e = parseInt($("#push .fishki").text());
+        if (!isNaN(e) && e > t) {
+          CasinoKubovich.errorChip();
+          return;
+        }
+        (CasinoKubovich.endPosition = null), (CasinoKubovich.result = null);
+        var n = "";
+        $("div.reel-yellow").length ? (n = "yellow") : (n = "black"),
+          $.post(
+            "/casino/kubovich/",
+            { action: n },
+            function (o) {
+              if (((CasinoKubovich.result = o), CasinoKubovich.result))
+                if (CasinoKubovich.result.success)
+                  CasinoKubovich.showMessage(CasinoKubovich.result.text);
+                else if (!CasinoKubovich.result.ready)
+                  clearInterval(CasinoKubovich.rotateInterval),
+                    (CasinoKubovich.rotateInterval = null),
+                    (CasinoKubovich.mayRotate = !0),
+                    $("#prizes").empty(),
+                    $("#reel-turning").attr("class", ""),
+                    $("#push .cost").html(" - \u0441\u043A\u043E\u0440\u043E"),
+                    $("#push").addClass("disabled"),
+                    $("#push-ellow").addClass("disabled"),
+                    $("#steps tr.my").removeClass("my"),
+                    $("#kubovich-smile").show(),
+                    CasinoKubovich.showError(
+                      "\u041A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E \u0432 \u0434\u0430\u043D\u043D\u044B\u0439 \u043C\u043E\u043C\u0435\u043D\u0442 \u041A\u0443\u0431\u043E\u0432\u0438\u0447 \u043E\u0442\u0434\u044B\u0445\u0430\u0435\u0442, \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442\u0435 \u043F\u043E\u0437\u0436\u0435."
+                    );
+                else if (CasinoKubovich.result.reload) {
+                  var r = !1;
+                  $("div.reel-yellow").length && (r = !0),
+                    CasinoKubovich.loadData(r);
+                } else CasinoKubovich.errorChip();
+              if (CasinoKubovich.result.wallet) {
+                var a = {};
+                (a.money = CasinoKubovich.result.wallet.money),
+                  (a.ore = CasinoKubovich.result.wallet.ore),
+                  (a.honey = CasinoKubovich.result.wallet.honey),
+                  updateWallet(a);
+              }
+              (CasinoKubovich.rotateInterval = null),
+                (CasinoKubovich.mayRotate = !0);
+              var s = 0,
+                c = 0;
+              $("#kubovich-message button").unbind("click"),
+                $("#kubovich-message button").bind("click", function () {
+                  $("#kubovich-message").hide(),
+                    $("#kubovich-message .data .text").html("");
+                }),
+                CasinoKubovich.nextStep();
+            },
+            "json"
+          );
+      };
+    }
+    function Gt() {
+      (NeftLenin.attack = function () {
+        $.post(
+          "/neftlenin/",
+          { ajax: 1, action: "startAction" },
+          function (t) {
+            t.result
+              ? AngryAjax.reload()
+              : (t.return_url && AngryAjax.goToUrl(t.return_url),
+                t.error &&
+                  showAlert(m.lang.LANG_MAIN_105, t.error, !0, "", ".welcome"));
+          },
+          "json"
+        );
+      }),
+        (NeftLenin.viewPreMission = NeftLenin.viewPreMission2);
+    }
+    function zt() {
+      (DungeonViewer.tryToGoToRoom = function (t) {
+        if ($("#preview-map").hasClass("data-prevent-click")) {
+          $("#preview-map").removeClass("data-prevent-click");
+          return;
+        }
+        DungeonViewer.activePlayerMoving ||
+          (Dungeon.isCanGoToRoom(t) &&
+            Dungeon.goToRoom(t, function (e) {
+              DungeonViewer.movePlayerToRoom(0, t, e);
+            }));
+      }),
+        (Dungeon.goToRoom = function (t, e) {
+          Dungeon.activeRequest ||
+            ((Dungeon.activeRequest = !0),
+            typeof t != "number" && (t = t.replace("room-", "")),
+            postUrl(
+              "/dungeon/gotoroom/",
+              { action: "gotoroom", room: t },
+              "post",
+              function (n) {
+                (Dungeon.activeRequest = !1),
+                  DungeonViewer.initCooldown(n.cooldown),
+                  (n.result || n.return_url) &&
+                    AngryAjax.goToUrl(AngryAjax.getCurrentUrl());
+              }
+            ));
+        });
+    }
+    function qn() {
+      if (!$("#modify-many-container").length)
+        try {
+          $(".tattoo").css("height", "1000px"),
+            $(".tattoo-slider").css("height", "700px"),
+            $(".tattoo-slider-slides").css("height", "100%"),
+            $(".tattoo-slider-slide__container").css("height", "100%");
+          let t = A(
+            '<div id="modify-many-container" style="display: flex; gap: 10px;"></div>'
+          );
+          [3, 20, 30].forEach((e) => {
+            let n = k({
+              text: `\u262F\uFE0F x${e}`,
+              onClick: async () => await Rt(e),
+              title: `\u041F\u043E\u043F\u0440\u043E\u0431\u043E\u0432\u0430\u0442\u044C \u0441\u0430\u043C\u043E\u043C\u0443 \u0445${e} \u0440\u0430\u0437`,
+            });
+            t.appendChild(n);
+          }),
+            $(".tattoo-draft-color-actions").append(t);
+        } catch {
+          console.log("could not redraw tattoo");
+        }
+    }
+    function Pn() {
+      let t = [
+        "\u043F\u0435\u043B\u044C\u043C\u0435\u043D\u044C",
+        "\u041A\u0443\u0431\u0438\u043A\u0438 \u041C\u043E\u0441\u043A\u043E\u0432\u043E\u043F\u043E\u043B\u0438\u0438",
+        "\u042D\u043B\u0435\u043C\u0435\u043D\u0442 \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438",
+        "\u0425\u0440\u0443\u0441\u0442\u044F\u0449\u0438\u0435 \u0432\u0430\u0444\u043B\u0438",
+        "\u043F\u043E\u0434\u0437\u0435\u043C\u043A\u0443",
+        "\u041D\u0430\u0431\u043E\u0440 \u043A\u043B\u044E\u0447\u0435\u0439",
+        "\u0420\u0430\u0441\u043F\u044B\u043B\u0438\u0442\u0435\u043B\u044C \u0434\u043B\u044F \u0434\u0443\u0445\u043E\u0432",
+      ];
+      $(".tv-tower-news-tab-content").each(function () {
+        let e = $(this),
+          n = e.find(".tv-tower-news-article").toArray();
+        n.sort((o, r) => {
+          let a = $(o).find(".tv-tower-award").text().trim(),
+            s = $(r).find(".tv-tower-award").text().trim(),
+            c = t.some((p) => a.includes(p));
+          return t.some((p) => s.includes(p)) - c;
+        }),
+          e.append(n);
+      });
+    }
+    function Ce() {
+      function t() {
+        $("#welcome-rat button:nth-child(3)").replaceWith(
+          $("#search_other_rat > div > div > div:nth-child(4)")
+            .clone()
+            .on("click", function () {
+              $(document).one("ajaxStop", function () {
+                t(), e();
+              });
+            })
+        );
+      }
+      function e() {
+        async function n() {
+          await fetch("https://www.moswar.ru/metro/fight-rat/", {
+            headers: {
+              accept: "*/*",
+              "content-type":
+                "application/x-www-form-urlencoded; charset=UTF-8",
+              "sec-fetch-dest": "empty",
+              "sec-fetch-mode": "cors",
+              "sec-fetch-site": "same-origin",
+              "x-requested-with": "XMLHttpRequest",
+            },
+            referrer: "https://www.moswar.ru/metro/",
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: "__referrer=%2Fmetro%2F&return_url=%2Fmetro%2F",
+            method: "POST",
+            mode: "cors",
+          });
+        }
+        $('button[onclick="metroFightRat();"]')
+          .removeAttr("onclick")
+          .off("click")
+          .on("click", async function () {
+            await n(),
+              $(document).one("ajaxStop", async function () {
+                Mn() && (await G());
+              }),
+              AngryAjax.goToUrl("/metro/");
+          });
+      }
+      t(), e();
+    }
+
+      // ============= Петарена исправлена
+
+async function In() {
+    if ($("#pets-table").length) return;
+
+    // Скрываем оригинальный блок с питомцами
+    $("#equipment-accordion").css({ display: "none" });
+
+    let t = $(".inventary");
+
+    // Очищаем ячейку перед добавлением нового контента
+    let targetCell = t.find("tr:first td:nth-child(2)");
+    targetCell.empty();
+
+    // Загрузка и добавление контента из cage-relic (боевые питомцы)
+    let e = await f("table", "https://www.moswar.ru/petarena/cage-relic/");
+    console.log("Загрузка cage-relic:", e);
+
+    if (e) {
+        let $e = $(e);
+        // Настраиваем боевых питомцев - расширяем вправо
+        $e.find(".object-thumbs")
+            .css({
+                width: "150%", // Расширяем вправо
+                maxWidth: "none",
+                height: "400px",
+                scrollbarWidth: "none",
+                overflowY: "scroll",
+                backgroundColor: "#f7b142" // Темно-оранжевый фон
+            })
+            .attr("id", "pets-table");
