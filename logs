@@ -1,0 +1,303 @@
+/**
+ * Фильтрует и организует логи боя, удаляя ненужные сообщения от NPC
+ */
+// НАЧАЛО ФУНКЦИИ cleanupFightLogs
+function cleanupFightLogs() {
+    try {
+        console.log('[LinkIF] Начинаем обработку логов боя');
+
+        // Анализируем DOM для отладки
+        analyzeDOM();
+
+        // Проверяем, находимся ли мы на странице боя
+        if (!window.location.href.includes('/fight/')) {
+            console.log('[LinkIF] Не страница боя, обработка логов отменена');
+            return;
+        }
+
+        // Проверяем, есть ли логи на странице несколькими способами
+        let fightLogs = document.querySelector('.fight-logs');
+        
+        if (!fightLogs) {
+            // Ищем альтернативные контейнеры логов боя
+            const possibleContainers = [
+                '.log-list',
+                '.fight-log',
+                '.fight-details',
+                '.battle-logs',
+                '.logs-container'
+            ];
+            
+            for (let selector of possibleContainers) {
+                const container = document.querySelector(selector);
+                if (container) {
+                    console.log(`[LinkIF] Найден альтернативный контейнер логов: ${selector}`);
+                    fightLogs = container;
+                    break;
+                }
+            }
+            
+            // Если всё еще не нашли, пробуем найти любые блоки с логами
+            if (!fightLogs) {
+                const allDivs = document.querySelectorAll('div');
+                for (let div of allDivs) {
+                    if ((div.className && div.className.includes('log')) || 
+                        (div.id && div.id.includes('log')) || 
+                        div.innerText.includes('Ход')) {
+                        console.log(`[LinkIF] Найден потенциальный контейнер логов: ${div.tagName}#${div.id}.${div.className}`);
+                        fightLogs = div;
+                        break;
+                    }
+                }
+            }
+        }
+        
+        if (!fightLogs) {
+            console.log('[LinkIF] Логи боя не найдены, повторяем позже');
+            setTimeout(cleanupFightLogs, 1000); // Повторная попытка через 1 секунду
+            return;
+        }
+
+        // Удаляем существующую навигационную панель, если есть
+        const existingPanel = document.getElementById('linkif-logs-navigator');
+        if (existingPanel) existingPanel.remove();
+
+        // Поиск записей логов с альтернативными селекторами
+        let logEntries = fightLogs.querySelectorAll('.block-rounded');
+        
+        if (!logEntries.length) {
+            // Пробуем альтернативные селекторы
+            const possibleEntrySelectors = [
+                '.turn',
+                '.log-entry',
+                '.log-block',
+                '.fight-round',
+                'div[id^="turn"]'
+            ];
+            
+            for (let selector of possibleEntrySelectors) {
+                const entries = fightLogs.querySelectorAll(selector);
+                if (entries.length) {
+                    console.log(`[LinkIF] Найдены записи логов по альтернативному селектору: ${selector}`);
+                    logEntries = entries;
+                    break;
+                }
+            }
+        }
+        
+        console.log(`[LinkIF] Найдено ${logEntries.length} записей логов`);
+
+        if (logEntries.length === 0) {
+            console.log('[LinkIF] Записи логов не найдены, повторяем позже');
+            setTimeout(cleanupFightLogs, 1000); // Повторная попытка через 1 секунду
+            return;
+        }
+
+        // Создаем панель навигации
+        const navigatorPanel = document.createElement('div');
+        navigatorPanel.id = 'linkif-logs-navigator';
+        navigatorPanel.style.cssText = 'background-color: #fff2c5; border: 2px solid #f0bd4c; border-radius: 10px; padding: 10px; margin-bottom: 15px; text-align: center; display: block !important; visibility: visible !important; opacity: 1 !important; z-index: 9999;';
+        
+        // Добавляем заголовок
+        const header = document.createElement('div');
+        header.style.cssText = 'color: #ff5722; font-weight: bold; margin-bottom: 10px;';
+        header.textContent = 'LinkIF: Навигация по логам боя';
+        navigatorPanel.appendChild(header);
+
+        // Создаем кнопки для переключения между логами
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.style.cssText = 'display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;';
+        
+        // Добавляем кнопки для навигации по ходам
+        if (logEntries.length > 0) {
+            // Кнопка для перехода к последнему ходу
+            const lastButton = document.createElement('button');
+            lastButton.textContent = 'Последний ход';
+            lastButton.style.cssText = 'background-color: #f5d28c; border: 1px solid #e6af4b; border-radius: 5px; padding: 5px 10px; cursor: pointer;';
+            lastButton.onclick = () => scrollToElement(logEntries[0]);
+            buttonsContainer.appendChild(lastButton);
+
+            // Добавляем кнопки для всех ходов
+            for (let i = 0; i < logEntries.length; i++) {
+                const turnNum = logEntries.length - i;
+                const turnButton = document.createElement('button');
+                turnButton.textContent = `Ход ${turnNum}`;
+                turnButton.style.cssText = 'background-color: #f5d28c; border: 1px solid #e6af4b; border-radius: 5px; padding: 5px 10px; cursor: pointer;';
+                turnButton.onclick = () => scrollToElement(logEntries[i]);
+                buttonsContainer.appendChild(turnButton);
+            }
+
+            // Кнопка для перехода к первому ходу
+            const firstButton = document.createElement('button');
+            firstButton.textContent = 'Первый ход';
+            firstButton.style.cssText = 'background-color: #f5d28c; border: 1px solid #e6af4b; border-radius: 5px; padding: 5px 10px; cursor: pointer;';
+            firstButton.onclick = () => scrollToElement(logEntries[logEntries.length - 1]);
+            buttonsContainer.appendChild(firstButton);
+        }
+        
+        navigatorPanel.appendChild(buttonsContainer);
+
+        // Пробуем вставить панель в разные места
+        let inserted = false;
+        
+        // 1. Вставляем перед контейнером логов
+        if (!inserted) {
+            try {
+                fightLogs.insertAdjacentElement('beforebegin', navigatorPanel);
+                inserted = true;
+                console.log('[LinkIF] Панель вставлена перед контейнером логов');
+            } catch (e) {
+                console.error('Ошибка вставки перед контейнером логов:', e);
+            }
+        }
+        
+        // 2. Вставляем внутрь контейнера в начало
+        if (!inserted) {
+            try {
+                fightLogs.insertAdjacentElement('afterbegin', navigatorPanel);
+                inserted = true;
+                console.log('[LinkIF] Панель вставлена в начало контейнера логов');
+            } catch (e) {
+                console.error('Ошибка вставки в контейнер логов:', e);
+            }
+        }
+        
+        // 3. Пробуем найти родительский элемент
+        if (!inserted) {
+            try {
+                const parent = fightLogs.parentElement;
+                if (parent) {
+                    parent.insertBefore(navigatorPanel, fightLogs);
+                    inserted = true;
+                    console.log('[LinkIF] Панель вставлена внутрь родителя контейнера логов');
+                }
+            } catch (e) {
+                console.error('Ошибка вставки внутрь родителя:', e);
+            }
+        }
+        
+        // 4. Крайний случай - вставляем в body
+        if (!inserted) {
+            try {
+                const mainContent = document.querySelector('.main-content, #content, main') || document.body;
+                mainContent.insertAdjacentElement('afterbegin', navigatorPanel);
+                inserted = true;
+                console.log('[LinkIF] Панель вставлена в начало основного контента');
+            } catch (e) {
+                console.error('Ошибка вставки в основной контент:', e);
+            }
+        }
+
+        // Фильтруем и организуем логи
+        logEntries.forEach(entry => {
+            try {
+                // Фильтруем ненужные сообщения от НПЦ
+                const messages = entry.querySelectorAll('.text');
+                messages.forEach(msg => {
+                    // Проверяем, не сообщение ли это от НПЦ
+                    const npcMessagePattern = /^NPC:.*(атакует|защищается|промахнулся|уворачивается)/i;
+                    if (npcMessagePattern.test(msg.textContent)) {
+                        // Уменьшаем видимость маловажных сообщений NPC
+                        msg.style.opacity = '0.5';
+                        msg.style.fontSize = '0.9em';
+                    }
+
+                    // Выделяем важные сообщения с информацией о здоровье
+                    if (msg.textContent.includes('Здоровье') || 
+                        msg.textContent.includes('наносит')) {
+                        msg.style.fontWeight = 'bold';
+                        msg.style.color = '#ff5722';
+                    }
+                });
+            } catch (e) {
+                console.error('Ошибка обработки сообщений:', e);
+            }
+        });
+
+        console.log('[LinkIF] Панель навигации по логам добавлена');
+        
+        // Функция для прокрутки к элементу
+        function scrollToElement(element) {
+            if (!element) return;
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    } catch (error) {
+        console.error("Error cleaning up fight logs:", error);
+    }
+}
+// КОНЕЦ ФУНКЦИИ cleanupFightLogs
+
+/**
+ * Настройка наблюдателя для логов боя
+ */
+// НАЧАЛО ФУНКЦИИ setupLogsObserver
+function setupLogsObserver() {
+    try {
+        console.log('[LinkIF] Настраиваем наблюдатель за логами боя');
+        
+        // Проверяем, находимся ли мы на странице боя
+        if (!window.location.href.includes('/fight/')) {
+            console.log('[LinkIF] Не страница боя, настройка наблюдателя отменена');
+            return;
+        }
+        
+        // Наблюдатель за всем документом для определения момента добавления логов
+        const bodyObserver = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList') {
+                    // Проверяем все добавленные узлы
+                    for (const node of mutation.addedNodes) {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            // Ищем добавленные логи по различным признакам
+                            if ((node.className && (
+                                  node.className.includes('log') || 
+                                  node.className.includes('turn') || 
+                                  node.className.includes('fight'))) || 
+                                (node.id && (
+                                  node.id.includes('log') || 
+                                  node.id.includes('turn') || 
+                                  node.id.includes('fight')))) {
+                                
+                                console.log('[LinkIF] Обнаружены новые логи, обновляем панель');
+                                setTimeout(cleanupFightLogs, 300);
+                                break;
+                            }
+                            
+                            // Проверяем также внутри добавленного узла
+                            const logsInside = node.querySelector('.fight-logs, .log-list, .fight-log, .turn, [id*="log"], [class*="log"]');
+                            if (logsInside) {
+                                console.log('[LinkIF] Обнаружены новые логи внутри добавленного элемента, обновляем панель');
+                                setTimeout(cleanupFightLogs, 300);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Настраиваем наблюдатель за всей страницей
+        bodyObserver.observe(document.body, { 
+            childList: true,
+            subtree: true,
+            attributes: false
+        });
+        
+        console.log('[LinkIF] Наблюдатель за страницей боя настроен');
+        
+        // Дополнительно запускаем периодическую проверку
+        window.linkIfLogsInterval = setInterval(() => {
+            if (window.location.href.includes('/fight/')) {
+                console.log('[LinkIF] Периодическая проверка логов');
+                if (!document.getElementById('linkif-logs-navigator')) {
+                    cleanupFightLogs();
+                }
+            } else {
+                clearInterval(window.linkIfLogsInterval);
+            }
+        }, 5000);
+    } catch (error) {
+        console.error("Error setting up logs observer:", error);
+    }
+}
+// КОНЕЦ ФУНКЦИИ setupLogsObserver
