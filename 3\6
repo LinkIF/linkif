@@ -1,0 +1,997 @@
+=== Часть 3\6 ===
+
+async function Ot() {
+      await fetch("https://www.moswar.ru/clan/profile/banzai/", {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: "https://www.moswar.ru/clan/profile/banzai/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: `player=${player.id}&boost%5Bratingaccur%5D=10000&boost%5Bratingdamage%5D=10000&boost%5Bratingcrit%5D=10000&boost%5Bratingdodge%5D=10000&boost%5Bratingresist%5D=10000&boost%5Bratinganticrit%5D=10000&hours=8&__ajax=1&return_url=%2Fclan%2Fprofile%2Fbanzai%2F`,
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+      }),
+        AngryAjax.goToUrl("/clan/profile/banzai/");
+    }
+    async function an() {
+      showAlert(
+        "\u{1F454} \u0420\u0435\u0436\u0438\u043C \u043F\u0440\u043E\u0442\u0438\u0432\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F \u0432\u043A\u043B\u044E\u0447\u0435\u043D!",
+        "\u0417\u0430\u043F\u0438\u0441\u044B\u0432\u0430\u044E\u0441\u044C \u0432 \u043F\u0440\u043E\u0442 \u043A\u0430\u0436\u0434\u044B\u0435 30 \u043C\u0438\u043D\u0443\u0442, 5 \u043C\u0438\u043D\u0443\u0442 \u0434\u043E \u0431\u043E\u044F."
+      );
+    }
+    async function sn(t) {
+      await fetch("https://www.moswar.ru/fight/", {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "sec-ch-ua": '"Chromium";v="131", "Not_A Brand";v="24"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: `https://www.moswar.ru/fight/${t}/`,
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: `action=attack&json=1&__referrer=%2Ffight%2F${t}%2F&return_url=%2Ffight%2F${t}%2F`,
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+      });
+    }
+    var pt = {
+        gloryLossCoefficient: 0.02,
+        targets: [
+          "\u041C\u043E\u0421\u043A\u0412\u0438\u0427\u043A\u0410",
+          "\u041A\u043E\u0434\u0438 \u0411\u0430\u043A\u0441\u0442\u0435\u0440",
+          "error 404",
+          "KREATOR_007",
+          "_\u0422\u0430\u0442\u0430\u0440\u0438\u043D_",
+          "\u0420\u0435\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439",
+          "Kitsune",
+          "\u0424\u0435\u0434\u043E\u0440 \u041C\u0430\u0440\u043C\u0435\u043B\u0430\u0434\u043E\u0432\u0438\u0447",
+          "\u0427\u0443\u0434\u043E \u042E\u0434\u043E",
+          "Sid_Ss",
+          "\u041A\u0432\u0430\u0437\u0438\u043C\u043E\u0434\u044B\u0447",
+          "\u0447\u0435\u0448\u0438\u043D\u043E\u0433\u0430",
+        ],
+      },
+      cn = !1;
+    async function ue() {
+      AngryAjax.getCurrentUrl() !== "/travel2/" &&
+        (console.log("[PVP] Not on Travel2 page. Navigating there..."),
+        AngryAjax.goToUrl("/travel2/"));
+      let t = ye(),
+        e = mn();
+      if (t == e) {
+        showAlert(
+          "\u0412\u044B \u0443\u0436\u0435 \u043D\u0430 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C \u0443\u0440\u043E\u0432\u043D\u0435!",
+          "\u041F\u0435\u0440\u0435\u0439\u0434\u0438\u0442\u0435 \u0432 \u0434\u0440\u0443\u0433\u0443\u044E \u0441\u0442\u0440\u0430\u043D\u0443 \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u0447\u0430\u0442\u044C \u0441\u043F\u0438\u0434\u0440\u0430\u043D. <br>"
+        );
+        return;
+      }
+      console.log("[PVP] Speedrun started."),
+        $e(),
+        await be(),
+        $(document).one("ajaxStop", () => setTimeout(G, 1e3)),
+        $(document).one("endOfTurn", () => setTimeout(ue, 3e3));
+    }
+    async function ln() {
+      !AngryAjax.getCurrentUrl() !== "/travel2/" &&
+        AngryAjax.goToUrl("/travel2/"),
+        await Nt();
+    }
+    async function me() {
+      $(document).one("ajaxStop", G), Worldtour2.startFight(), await he(2);
+    }
+    async function G() {
+      if (AngryAjax.getCurrentUrl().includes("fight")) {
+        if (!$(".block-rounded").children().first().hasClass("current")) {
+          showAlert(
+            "\u0423\u043F\u0441...",
+            "\u041F\u0435\u0440\u0435\u0439\u0434\u0438\u0442\u0435 \u043D\u0430 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0445\u043E\u0434!"
+          );
+          return;
+        }
+        if (
+          $(
+            "#fightGroupForm > table > tbody > tr > td.log > ul > li:nth-child(1) > div.result"
+          ).length > 0
+        ) {
+          showAlert(
+            "\u0423\u043F\u0441...",
+            "\u0411\u043E\u0439 \u0443\u0436\u0435 \u0437\u0430\u043A\u043E\u043D\u0447\u0435\u043D! \u{1F440}"
+          );
+          return;
+        }
+        console.log("[PVP] Handle group fight."),
+          await ct(st.roar),
+          await ct(st.secondSelf),
+          await ct(st.topot),
+          await ct(st.krovotok),
+          await pn(10),
+          console.log("[PVP] Group fight handler finished execution.");
+      }
+    }
+    async function pn(t = 10) {
+      if (AngryAjax.getCurrentUrl().includes("fight"))
+        for (let e = 0; e < t; e++) {
+          let n = document.querySelector("#fight-actions > div.waiting");
+          if ((console.log(n), n)) {
+            dn();
+            return;
+          }
+          console.log("Making turn..."),
+            groupFightMakeStep(),
+            AngryAjax.reload(),
+            await he(0.5);
+        }
+    }
+    function dn() {
+      let t =
+        document
+          .querySelector("#fightGroupForm > h3 > div.group1")
+          .innerText.split(" ")[1]
+          .slice(1, -1)
+          .split("/")[0] === "0";
+      return (cn = t), t;
+    }
+    async function Nt() {
+      if (!pt.targets || pt.targets.length === 0) {
+        showAlert(
+          "\u041E\u0448\u0438\u0431\u043A\u0430!",
+          "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0441\u043F\u0438\u0441\u043E\u043A \u0446\u0435\u043B\u0435\u0439 \u0434\u043B\u044F \u043F\u043E\u0438\u0441\u043A\u0430 \u0441\u0438\u043B\u044C\u043D\u044B\u0445."
+        );
+        return;
+      }
+      let { name: t, maxPoints: e, victoryPoints: n } = ge();
+      try {
+        for (let o = 0; o <= 10; o++) {
+          if (!t) throw new Error("Nickname not found");
+          if (
+            (console.log("[\u{1F4C1}pvp.js:175] ", t, e, n),
+            pt.targets.includes(t))
+          ) {
+            showConfirm(
+              `<b>${t}</b> <br> \u0417\u0430 \u043F\u043E\u0431\u0435\u0434\u0443 \u0432\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u0435 <b>${n}</b> / <b>${e}</b> \u043E\u0447\u043A\u043E\u0432! (${e - n})`,
+              [
+                {
+                  title: "\u041D\u0430\u043F\u0430\u0441\u0442\u044C!",
+                  callback: me,
+                },
+                {
+                  title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+                  callback: function (a) {
+                    closeAlert(a);
+                  },
+                },
+              ],
+              {
+                __title:
+                  "\u041F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A \u043D\u0430\u0439\u0434\u0435\u043D!",
+              }
+            );
+            return;
+          }
+          showAlert(
+            "\u041F\u043E\u0438\u0441\u043A \u0434\u043E\u0441\u0442\u043E\u0439\u043D\u043E\u0433\u043E \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430",
+            `\u041F\u043E\u043F\u044B\u0442\u043A\u0430 ${o + 1}: <b>${t}</b>.<br>\u0418\u0449\u0435\u043C \u0434\u0430\u043B\u044C\u0448\u0435...`
+          );
+          let r = await fe(o === 0);
+          (t = r.name), (e = r.maxPoints), (n = r.victoryPoints);
+        }
+        showConfirm(
+          "\u041D\u0438\u043A\u043E\u0433\u043E \u0438\u0437 \u0441\u043F\u0438\u0441\u043A\u0430 \u043D\u0435 \u043D\u0430\u0448\u0435\u043B. \u0414\u0430\u043B\u044C\u043D\u0435\u0439\u0448\u0438\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F?",
+          [
+            {
+              title:
+                "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u0438\u0441\u043A!",
+              callback: Nt,
+            },
+            {
+              title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+              callback: function (o) {
+                closeAlert(o);
+              },
+            },
+          ],
+          {
+            __title:
+              "\u0411\u0435\u0437 \u0443\u0441\u043F\u0435\u0445\u0430... :(",
+          }
+        );
+      } catch (o) {
+        console.log(
+          `Could not search for opponent:
+`,
+          o
+        );
+      }
+    }
+    async function un() {
+      AngryAjax.getCurrentUrl() !== "/travel2/" &&
+        AngryAjax.goToUrl("/travel2/");
+      try {
+        let t = document.querySelector(
+            "#content > div.worldtour-stats > div > p:nth-child(3) > span:nth-child(4)"
+          ).innerText,
+          e = ge(),
+          n = t * pt.gloryLossCoefficient;
+        for (let o = 0; o <= 10; o++) {
+          if (
+            (console.log("[\u{1F4C1}pvp.js:251] opponent:", e),
+            t - e.victoryPoints < n)
+          ) {
+            showConfirm(
+              `<b>${e.name}</b> <br> \u0417\u0430 \u043F\u043E\u0431\u0435\u0434\u0443 \u0432\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u0435 <b>${e.victoryPoints}</b> / <b>${t}</b> \u043E\u0447\u043A\u043E\u0432! (${t - e.victoryPoints})`,
+              [
+                {
+                  title: "\u041D\u0430\u043F\u0430\u0441\u0442\u044C!",
+                  callback: me,
+                },
+                {
+                  title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+                  callback: function (a) {
+                    closeAlert(a);
+                  },
+                },
+              ],
+              {
+                __title:
+                  "\u041F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A \u043D\u0430\u0439\u0434\u0435\u043D!",
+              }
+            );
+            return;
+          }
+          showAlert(
+            "\u041F\u043E\u0438\u0441\u043A \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430 \u0441 \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0441\u043B\u0430\u0432\u043E\u0439",
+            `\u041F\u043E\u043F\u044B\u0442\u043A\u0430 ${o + 1}: <b>${e.name}</b> (<b>${e.victoryPoints}</b>).<br>\u0418\u0449\u0435\u043C \u0434\u0430\u043B\u044C\u0448\u0435 \u0432 \u0434\u0438\u0430\u043F\u0430\u0437\u043E\u043D\u0435 (<span class="dpoints"><i></i> ${Math.floor(t - n)} ... ${t}</span>)`
+          ),
+            (e = await fe(o === 0));
+        }
+        showConfirm(
+          "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043D\u0430\u0439\u0442\u0438 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430 \u0441 \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0441\u043B\u0430\u0432\u044B. \u0414\u0430\u043B\u044C\u043D\u0435\u0439\u0448\u0438\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F?",
+          [
+            {
+              title:
+                "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C \u043F\u043E\u0438\u0441\u043A!",
+              callback: Nt,
+            },
+            {
+              title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+              callback: function (o) {
+                closeAlert(o);
+              },
+            },
+          ],
+          {
+            __title:
+              "\u0411\u0435\u0437 \u0443\u0441\u043F\u0435\u0445\u0430... :(",
+          }
+        );
+      } catch (t) {
+        console.log(
+          `Could not search for opponent:
+`,
+          t
+        );
+      }
+    }
+    function ge() {
+      try {
+        let t = document.querySelector(".worldtour__enemy-nickname").innerText,
+          e = we(document);
+        return { name: t, ...e };
+      } catch {
+        showAlert("Could not get opponent name.");
+        return;
+      }
+    }
+    async function fe(t = !1) {
+      if (pvpTickets.boss < 50)
+        throw (
+          (showAlert(
+            "\u0411\u0438\u043B\u0435\u0442\u044B \u0437\u0430\u043A\u0430\u043D\u0447\u0438\u0432\u0430\u044E\u0442\u0441\u044F!",
+            `\u0423 \u0432\u0430\u0441 \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C <span class="shuffle2">${pvpTickets.boss}<i></i></span> \u0431\u0438\u043B\u0435\u0442\u043E\u0432 \u0434\u043B\u044F \u041F\u043E\u0438\u0441\u043A\u0430 \u0422\u043E\u043F 20. <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435, \u0438\u043B\u0438 \u0441\u043D\u0438\u043C\u0438\u0442\u0435 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0435.`
+          ),
+          new Error("Not enough boss tickets!"))
+        );
+      if (pvpTickets.normal < 100)
+        throw (
+          (showAlert(
+            "\u0411\u0438\u043B\u0435\u0442\u044B \u0437\u0430\u043A\u0430\u043D\u0447\u0438\u0432\u0430\u044E\u0442\u0441\u044F!",
+            `\u0423 \u0432\u0430\u0441 \u043E\u0441\u0442\u0430\u043B\u043E\u0441\u044C <span class="shuffle">${pvpTickets.boss}<i></i></span> \u0431\u0438\u043B\u0435\u0442\u043E\u0432 \u0434\u043B\u044F \u0441\u043C\u0435\u043D\u044B \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430. <br> \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u043F\u043E\u0437\u0436\u0435, \u0438\u043B\u0438 \u0441\u043D\u0438\u043C\u0438\u0442\u0435 \u043E\u0433\u0440\u0430\u043D\u0438\u0447\u0435\u043D\u0438\u0435.`
+          ),
+          new Error("Not enough normal tickets!"))
+        );
+      try {
+        let n = await (
+            await fetch("https://www.moswar.ru/travel2/", {
+              headers: {
+                accept:
+                  "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                "accept-language": "en-US,en;q=0.9,ru;q=0.8",
+                "cache-control": "max-age=0",
+                "content-type": "application/x-www-form-urlencoded",
+                "upgrade-insecure-requests": "1",
+              },
+              referrer: "https://www.moswar.ru/travel2/",
+              referrerPolicy: "strict-origin-when-cross-origin",
+              body: `action=roll${t ? "2" : ""}&ajax=1&__referrer=%2Ftravel2%2F&return_url=%2Ftravel2%2F`,
+              method: "POST",
+              mode: "cors",
+              credentials: "include",
+            })
+          ).text(),
+          o = xe(n),
+          r = o.querySelector(".worldtour__enemy-nickname").innerText,
+          a = we(o);
+        return t ? pvpTickets.boss-- : pvpTickets.normal--, { name: r, ...a };
+      } catch {
+        return console.log("Could not reroll PvP."), !1;
+      }
+    }
+    var st = { roar: -310, topot: -311, krovotok: -313, secondSelf: 363 };
+    async function ct(t) {
+      await fetch("https://www.moswar.ru/fight/", {
+        headers: {
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+        body: `action=useabl&json=1&target=${t}`,
+        method: "POST",
+        credentials: "include",
+      });
+    }
+    async function he(t = 1) {
+      return new Promise((e) => setTimeout(e, t * 1e3));
+    }
+    function we(t = window.document) {
+      try {
+        let e = +t
+            .querySelector(
+              "#content > div.worldtour-stats > div > p:nth-child(3) > span:nth-child(4)"
+            )
+            .innerText.split(" ")[0],
+          n = +t
+            .querySelector(
+              "#content > div.worldtour-stats > div > p:nth-child(3) > span:nth-child(1)"
+            )
+            .innerText.split(" ")[0];
+        return { maxPoints: e, victoryPoints: n };
+      } catch {
+        console.log("[\u{1F30E}]Could not get PvP points rewards.");
+      }
+    }
+    function ye() {
+      try {
+        return +document
+          .querySelector("#content > div.worldtour-stats > div > h3")
+          .innerText.match(/\d+/)[0];
+      } catch {
+        console.log("Could not get current country index.");
+      }
+    }
+    function mn() {
+      try {
+        return [...document.querySelector("#travel-2-country")]
+          .pop()
+          .innerText.split(".")[0];
+      } catch (t) {
+        console.log("Could not get max level. Error:", t);
+      }
+    }
+    async function be() {
+      console.log("[PVP] START FIGHT..."),
+        await fetch("https://www.moswar.ru/travel2/", {
+          headers: {
+            accept: "*/*",
+            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-requested-with": "XMLHttpRequest",
+          },
+          referrer: "https://www.moswar.ru/travel2/",
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body: "action=fight&ajax=1&__referrer=%2Ftravel2%2F&return_url=%2Ftravel2%2F",
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+        }),
+        AngryAjax.reload();
+    }
+    function xe(t) {
+      let e = new DOMParser(),
+        n = t.replace(/\\&quot;/g, '"').replace(/\\"/g, '"');
+      return e.parseFromString(n, "text/html");
+    }
+    function lt(t) {
+      let e = document.createElement("div");
+      return (e.innerHTML = t.trim()), e.firstChild;
+    }
+    async function ve() {
+      AngryAjax.getCurrentUrl() !== "/travel2/" &&
+        (console.log("[PVP] Not on Travel2 page. Navigating there..."),
+        AngryAjax.goToUrl("/travel2/"));
+      let t = ye();
+      console.log(`[PVP] \u2B50\uFE0F Farming stars in ${t}.`),
+        $e(),
+        await be(),
+        $(document).one("ajaxStop", () => setTimeout(G, 1e3)),
+        $(document).one("endOfTurn", () => setTimeout(ve, 1e3));
+    }
+    function $e() {
+      $.post("/player/checkhp/", { action: "restorehp" }, function (t) {});
+    }
+    async function gn(t = !1) {
+      let n = await (
+          await fetch("https://www.moswar.ru/travel2/", {
+            headers: {
+              accept:
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+              "accept-language": "en-US,en;q=0.9,ru;q=0.8",
+              "cache-control": "max-age=0",
+              "content-type": "application/x-www-form-urlencoded",
+              "upgrade-insecure-requests": "1",
+            },
+            referrer: "https://www.moswar.ru/travel2/",
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: `action=roll${t ? "2" : ""}&ajax=1&__referrer=%2Ftravel2%2F&return_url=%2Ftravel2%2F`,
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+          })
+        ).text(),
+        o = xe(n),
+        r = $(o).find(".worldtour-stats"),
+        a = $(o).find(".worldtour__team.worldtour__team--right");
+      $(".worldtour-stats").replaceWith(r),
+        $(".worldtour__team.worldtour__team--right").replaceWith(a),
+        Te();
+    }
+    function ke() {
+      if ($("#pvp-totals").length) return;
+      let t = { current: 0, max: 0 };
+      $("#travel-2-country option").each(function () {
+        let n = $(this)
+          .text()
+          .match(/(\d+)\/(\d+)/);
+        n && ((t.current += Number(n[1])), (t.max += Number(n[2])));
+      });
+      let e = $(
+        `<span id="pvp-totals" style="font-size:140%" class="dpoints">${t.current} / ${t.max}<i></i></span>`
+      );
+      $(".worldtour-stats__content").append(e),
+        $("span.dpoints").css({ "text-shadow": "1px 1px 1px #00000073" });
+    }
+    function Te() {
+      $(
+        "#content > div.worldtour.worldtour--2.worldtour--atlantida > div.worldtour__footer > div.worldtour__footer-actions-2 button"
+      ).each((t, e) => {
+        $(e)
+          .off("click")
+          .removeAttr("onclick")
+          .on("click", async () => {
+            await gn(t === 1), ke();
+          });
+      }),
+        $(".worldtour__button-border-blue .worldtour__button-small").on(
+          "click",
+          Se
+        );
+    }
+    function Se() {
+      let t = $(".worldtour-helpers-inner");
+      t.html(t.children().slice(0, 10)),
+        t.css({
+          width: "auto",
+          "margin-left": "0%",
+          display: "flex",
+          "flex-direction": "column",
+          height: "100%",
+        }),
+        $(".worldtour__pagination").remove();
+    }
+    function _e() {
+      if (
+        (Te(),
+        Se(),
+        ke(),
+        $(".worldtour-rating-place").css({ position: "absolute" }),
+        document.querySelector(".auto-pvp"))
+      ) {
+        console.log("[PVP] Panel already initialized.");
+        return;
+      }
+      let t = lt(
+        '<div class="button auto-pvp" id="travel-classic-button" class="auto-pvp"><a class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c"><span class="cool-1"><i></i>\u041F\u043E\u0438\u0441\u043A \u0421\u0438\u043B\u044C\u043D\u044B\u0445</span></div></a></div>'
+      );
+      t.addEventListener("click", ln);
+      let e = lt(
+        '<div class="button" id="travel-classic-button"><a class="f""><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c"><span class="star"><i></i> \u0424\u0430\u0440\u043C\u0438\u0442\u044C \u0417\u0432\u0435\u0437\u0434\u044B </span></div></a></div>'
+      );
+      e.addEventListener("click", ve);
+      let n = lt(
+        '<div class="button" id="travel-classic-button"><a class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c"><span>\u{1F3CE}\uFE0F \u0421\u043F\u0438\u0434\u0440\u0430\u043D</span></div></a></div>'
+      );
+      n.addEventListener("click", ue);
+      let o = lt(
+        '<div class="button" id="travel-classic-button"><a class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c"><span class="dpoints"><i></i> \u041C\u0430\u043A\u0441\u0438\u043C\u0443\u043C \u0421\u043B\u0430\u0432\u044B</span></div></a></div>'
+      );
+      o.addEventListener("click", async () => await un()),
+        $("#travel-pvp-button").after(t),
+        $("#travel-pvp-button").after(o),
+        $("#travel-classic-button").after(e),
+        $("#travel-classic-button").after(n);
+    }
+    function fn(t) {
+      let e = t.split("/"),
+        n = e.at(-2),
+        o = e.at(-1).split(".")[0];
+      return [n, o];
+    }
+    function hn() {
+      try {
+        return $(".object-thumbs .object-thumb")
+          .has(".action.disabled")
+          .find("img")
+          .attr("src");
+      } catch (t) {
+        console.log(
+          `Could not find active tattoo.
+`,
+          t
+        );
+      }
+    }
+    async function Rt(t = 10) {
+      let e = hn();
+      for (let n = 0; n < t; n++) e && (await wn(e));
+      $(document).one("ajaxStop", () => bn()),
+        AngryAjax.goToUrl(AngryAjax.getCurrentUrl());
+    }
+    async function wn(t) {
+      let [e, n] = fn(t);
+      await fetch("https://www.moswar.ru/tattoo/", {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: "https://www.moswar.ru/tattoo/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: `action=tattoo_mf&honey=0&style=${e}&id=${n}&ajax=1&__referrer=%2Ftattoo%2F&return_url=%2Ftattoo%2F`,
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+      });
+    }
+    var yn = k({
+      text: "\u262F\uFE0F x10",
+      onClick: async () => {
+        await Rt(10), yn.classList.remove("disabled");
+      },
+      title:
+        "10 \u043C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0439 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0445 \u0442\u0430\u0442\u0443\u0438\u0440\u043E\u043A",
+    });
+    function bn() {
+      let t = $("#tattoo-alerts");
+      t.length || (t = D("tattoo-alerts")),
+        $(".alert").each((e, n) => {
+          t.has(n).length ||
+            ($(n).css("position", "static").css("display", "inline-block"),
+            $(n)
+              .find("#alert-text")
+              .text()
+              .includes(
+                "\u0443\u0441\u043F\u0435\u0448\u043D\u043E \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0438"
+              ) &&
+              ($(n).find("#alert-title").css("background", "green"),
+              $(n).find(".close-cross").remove(),
+              t.append(n)));
+        });
+    }
+    async function xn(t) {
+      let e = new DOMParser(),
+        n = t.replace(/\\&quot;/g, '"').replace(/\\"/g, '"');
+      return e.parseFromString(n, "text/html");
+    }
+    async function vn(t, e) {
+      let o = await (await fetch(e)).text(),
+        a = (await xn(o)).querySelectorAll(t);
+      if (a.length !== 0) return a.length === 1 ? a[0] : Array.from(a);
+    }
+    async function $n() {
+      try {
+        let [t, e] = await vn(
+          ".zodiak-snake-participiants",
+          "https://www.moswar.ru/zodiac/"
+        );
+        return +t.innerText.trim().slice(-1);
+      } catch {
+        console.log(
+          "\u2649\uFE0F \u041D\u0435 \u043D\u0430\u0448\u0435\u043B \u0431\u0438\u043B\u0435\u0442\u043E\u0432 \u0437\u043E\u0434\u0438\u0430\u043A\u0430."
+        );
+        return;
+      }
+    }
+    async function kn(t = 1) {
+      await fetch("https://www.moswar.ru/zodiac/", {
+        headers: {
+          accept: "*/*",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "sec-fetch-site": "same-origin",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: "https://www.moswar.ru/zodiac/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: `action=buy_ticket&value=${t}&__referrer=%2Fzodiac%2F&return_url=%2Fzodiac%2F`,
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+      });
+    }
+    async function O(
+      { count: t, intervalMin: e } = { count: 1, intervalMin: 60 }
+    ) {
+      let n = await $n();
+      if (n === void 0)
+        return showAlert(
+          "\u041E\u0448\u0438\u0431\u043A\u0430",
+          "\u2649\uFE0F \u041D\u0435\u0442\u0443 \u0437\u043E\u0434\u0438\u0430\u043A\u0430."
+        );
+      n < 1
+        ? (showAlert(
+            "\u0417\u043E\u0434\u0438\u0430\u043A \u2649\uFE0F",
+            `\u041D\u0435 \u043D\u0430\u0448\u0435\u043B \u0431\u0438\u043B\u0435\u0442\u043E\u0432. \u041F\u043E\u043A\u0443\u043F\u0430\u044E ${t} \u0448\u0442.`
+          ),
+          await kn(1))
+        : showAlert(
+            "\u0417\u043E\u0434\u0438\u0430\u043A \u2649\uFE0F",
+            `\u041D\u0430\u0448\u0435\u043B ${n} \u0431\u0438\u043B\u0435\u0442 \u0437\u043E\u0434\u0438\u0430\u043A\u0430. \u0421\u043A\u0438\u043F...`
+          ),
+        showAlert(
+          "\u0417\u043E\u0434\u0438\u0430\u043A \u2649\uFE0F",
+          `\u2649\uFE0F \u041F\u0440\u043E\u0431\u0443\u044E \u0437\u0430\u043D\u043E\u0432\u043E \u0447\u0435\u0440\u0435\u0437 ${e} \u043C\u0438\u043D\u0443\u0442(\u044B).`
+        ),
+        setTimeout(
+          async () => await O({ count: t, intervalMin: e }),
+          e * 60 * 1e3
+        );
+    }
+    function Ae() {
+      let t = _n(),
+        e = $(".log > ul.fight-log .text"),
+        n = $("#logs-me");
+      n.length ||
+        (n = $("<div id='logs-me'></div>")
+          .css("display", "flex")
+          .css("flexDirection", "column")),
+        $(".list-users--left, .list-users--right").each(function () {
+          Tn($(this));
+        });
+      let o = [
+        {
+          text: "\u0412\u043E\u0440\u043E\u043D\u043A\u0430",
+          icon: "/@/images/obj/../ico/ability/tugboat.png",
+        },
+        {
+          text: "\u043F\u0443\u0441\u043A\u0430\u0435\u0442 \u043D\u0430 \u043A\u043E\u0442\u043E\u0448\u0430\u0432\u0435\u0440\u043C\u0443 \u0441\u0435\u0440\u0434\u0438\u0442\u043E\u0433\u043E \u043A\u043E\u0442\u0438\u043A\u0430",
+          icon: "/@/images/obj/../ico/ability/burrito_abil.png",
+        },
+        {
+          text: "\u0414\u044B\u043C\u043E\u0432\u0443\u044E \u0437\u0430\u0432\u0435\u0441\u0443",
+          icon: "/@/images/ico/ability/kuzn_abil.png",
+        },
+        {
+          text: "\u041A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u043D\u044B\u0439 \u0412\u0438\u0440\u0443\u0441",
+          icon: "/@/images/loc/hacker/abil_1.png",
+        },
+        {
+          text: "\u0411\u0440\u0430\u0442 \u041C\u0438\u0445\u0430\u043B\u044B\u0447\u0430",
+          condition: (l) => l.hasClass("rupor"),
+          action: (l) => l.remove(),
+        },
+        {
+          text: "\u043D\u0438\u043A\u0442\u043E \u043D\u0435 \u043F\u043E\u0441\u0442\u0440\u0430\u0434\u0430\u043B",
+          action: (l) => l.remove(),
+        },
+        {
+          text: "\u0431\u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0438 \u0422\u0435\u0441\u043B\u044B",
+          icon: "/@/images/ico/ability/tesla_expl.png",
+        },
+        {
+          text: "\u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0440\u0435\u043B\u0438\u043A\u0442\u0430 \u0441\u043D\u0438\u0436\u0430\u0435\u0442 \u043A\u0440\u0443\u0442\u043E\u0441\u0442\u044C",
+          icon: "/@/images/obj/relict/rock77_128.png",
+        },
+        {
+          text: "\u043F\u043E\u0434\u0436\u0438\u0433\u0430\u0435\u0442 \u0442\u0440\u043E\u043D",
+          icon: "/@/images/obj/relict/rock38_128.png",
+        },
+        {
+          text: "\u0420\u0435\u043B\u0438\u043A\u0442 \u0434\u0435\u043B\u0430\u044E\u0442 \u0432\u0435\u043B\u0438\u043A\u0438\u043C",
+          icon: "/@/images/obj/relict/rock47_128.png",
+        },
+        {
+          text: "\u0443\u0432\u043E\u0437\u0438\u0442 \u0443 \u0438\u0433\u0440\u043E\u043A\u0430",
+          icon: "/@/images/obj/cars/129-big.png",
+        },
+        {
+          text: "\u043A\u043E\u043C\u0430\u043D\u0434\u0443\u0435\u0442 \u041E\u041C\u041E\u041D\u0443 \u0440\u0430\u0437\u0433\u043E\u043D\u044F\u0442\u044C \u043D\u0435\u0441\u043E\u0433\u043B\u0430\u0441\u043D\u044B\u0445",
+          icon: "/@/images/obj/confr_ability/fight_ability6.png",
+        },
+        {
+          text: "\u043F\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0432 \u043A\u0443\u043A\u043B\u0443",
+          icon: "/@/images/loc/squid2025/abils/6.png",
+        },
+        {
+          text: "\u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0411\u043E\u0435\u0432\u043E\u0433\u043E \u043C\u0438\u0433\u0440\u0430\u043D\u0442\u0430, \u0440\u0430\u0437\u043C\u0430\u0445\u0438\u0432\u0430\u044F \u0422\u0440\u0443\u0434\u043E\u0432\u043E\u0439 \u043A\u043D\u0438\u0436\u043A\u043E\u0439",
+          icon: "/@/images/obj/fight_item/migrant.png",
+        },
+        {
+          text: "\u0435\u0441\u0442 \u043A\u0438\u0442\u0430\u0439\u0441\u043A\u0438 \u043F\u0435\u0447\u0435\u043D\u044C\u043A\u0438 \u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442 \u0441\u0435\u0431\u0435",
+          icon: "/@/images/loc/squid2025/abils/5.png",
+        },
+        {
+          text: "\u0438\u0433\u0440\u0430\u0435\u0442 \u0432 \u041A\u0430\u043C\u0435\u0448\u043A\u0438",
+          icon: "/@/images/loc/squid2025/abils/2.png",
+        },
+        {
+          text: "\u0434\u0451\u0440\u0433\u0430\u0435\u0442 \u0437\u0430 \u0441\u0442\u0440\u0443\u043D\u044B!",
+          icon: "/@/images/ico/ability/balalajka.png",
+        },
+        {
+          text: "\u0434\u0435\u043B\u0430\u0435\u0442 \u043A\u0443\u0441\u044C \u043F\u0438\u0442\u043E\u043C\u0446\u0443",
+          icon: "/@/images/ico/ability/wolfie_2.png",
+        },
+        {
+          text: "\u044F\u0440\u043E\u0441\u0442\u043D\u043E \u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0432 \u0431\u043E\u0439 \u043A\u043B\u043E\u043D\u0430",
+          icon: "/@/images/ico/ability/fury_7.png",
+        },
+        {
+          text: "\u041F\u0440\u0438\u0448\u0435\u043B\u0435\u0446 \u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u043D\u0430 \u043F\u043E\u043C\u043E\u0449\u044C \u043C\u0438\u043D\u0438-\u041F\u0440\u0438\u0448\u0435\u043B\u044C\u0446\u0430!",
+          icon: "/@/images/ico/ability/alien_many.png",
+        },
+        {
+          text: "\u043E\u0431\u044A\u0435\u0434\u0438\u043D\u044F\u0435\u0442 \u0442\u0440\u0435\u0445 \u043C\u0438\u043D\u0438-\u043F\u0440\u0438\u0448\u0435\u043B\u044C\u0446\u0435\u0432",
+          icon: "/@/images/ico/ability/alien_uber.png",
+        },
+        {
+          text: "\u043F\u0440\u0438\u0432\u043E\u0437\u0438\u0442 \u0432 \u0431\u043E\u0439 \u043D\u0430 \u0441\u0432\u043E\u0435\u043C \u041C\u0430\u0439\u0431\u0430\u0431\u0430\u0445\u0435",
+          icon: "/@/images/obj/gifts2017/mers/invite-big.png",
+        },
+        {
+          text: "\u043F\u0440\u043E\u0432\u043E\u0434\u0438\u0442 \u0443\u0434\u0430\u0440 \u0441 \u0431\u0435\u0441\u043F\u0438\u043B\u043E\u0442\u043D\u0438\u043A\u0430!",
+          icon: "/@/images/ico/ability/bpla_abil.png",
+        },
+        {
+          text: "\u041A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u041F\u044B\u043B\u044C \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442 \u043D\u0430 \u043F\u043E\u043C\u043E\u0449\u044C",
+          icon: "/@/images/ico/ability/cloud3.png",
+        },
+        {
+          text: "\u0441\u0442\u0440\u0435\u043B\u044F\u0435\u0442 \u043A\u0430\u043A \u0432 \u043A\u0438\u043D\u043E",
+          icon: "/@/images/ico/ability/gru_1.png",
+        },
+        {
+          text: "\u0431\u044C\u0435\u0442 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043B\u0430\u043F\u0438\u0449\u0438",
+          icon: "/@/images/ico/ability/lion_1.png",
+        },
+        {
+          text: "\u043F\u0440\u0435\u0434\u044A\u044F\u0432\u0438\u0442\u044C \u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B",
+          icon: "/@/images/ico/ability/tetris_abil.png",
+        },
+        {
+          text: "\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044F \u0414\u0436\u0435\u0439\u043B \u0411\u0440\u0435\u0439\u043A, \u0441\u043D\u0438\u043C\u0430\u0435\u0442",
+          icon: "/@/images/loc/hacker/abil_2.png",
+        },
+        {
+          text: "\u041A\u0430\u0442\u0443\u0448\u043A\u0443 \u0422\u0435\u0441\u043B\u0443",
+          icon: "/@/images/obj/gifts2018/car/tesla_coil_128.png",
+        },
+        {
+          text: "\u0425\u0430\u043A\u0435\u0440 [??] \u0447\u0438\u043F\u0438\u0440\u0443\u0435\u0442",
+          icon: "/@/images/ico/ability/bigbro_2.png",
+        },
+        {
+          text: "\u0425\u0430\u043A\u0435\u0440 \u043C\u043E\u0431\u0438\u043B\u0438\u0437\u0443\u0435\u0442\u0441\u044F \u0438 \u043F\u0440\u0438\u0445\u043E\u0434\u0438\u0442 \u043D\u0430 \u043F\u043E\u043C\u043E\u0449\u044C",
+          icon: "/@/images/loc/hacker/abil_6.png",
+        },
+        {
+          text: "\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0441\u044F \u0411\u043E\u0441\u0441\u043E\u043C",
+          icon: "/@/images/loc/squid2025/abils/3.png",
+        },
+        {
+          text: "\u0433\u0440\u043E\u043C\u043A\u043E \u0447\u0438\u0442\u0430\u0435\u0442 QR-\u043A\u043E\u0434",
+          icon: "/@/images/ico/ability/bigbro_3.png",
+        },
+        {
+          text: "\u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0441\u0438\u043B\u044C\u043D\u0435\u0439\u0448\u0438\u0445 \u0434\u0443\u0445\u043E\u0432 \u0441\u043E\u043F\u0435\u0440\u043D\u0438\u043A\u043E\u0432",
+          icon: "/@/images/ico/ability/abil_shaman_ultra.png",
+        },
+        { text: "\u041C\u044D\u0440", icon: "/@/images/ico/ability/major.png" },
+        {
+          text: "\u041C\u043E\u0441\u0413\u043E\u0441\u0421\u0442\u0440\u0430\u0445!",
+          icon: "/@/images/obj/relict/rock72_128.png",
+        },
+        {
+          text: "\u041F\u044B\u043B\u0430\u044E\u0449\u0438\u0439 \u0441\u043B\u0435\u0434",
+          icon: "/@/images/ico/ability/car220.png",
+        },
+        {
+          text: "\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u0434\u0443\u0431\u0438\u043D\u043E\u0447\u043A\u0443 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442 50% \u0443\u0440\u043E\u043D\u0430",
+          icon: "/@/images/ico/ability/omon_weapon.png",
+        },
+        {
+          text: "\u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0428\u0442\u0443\u0440\u043C\u043E\u0432\u0438\u043A\u0430, \u0440\u0430\u0437\u043C\u0430\u0445\u0438\u0432\u0430\u044F \u0443\u0434\u043E\u0441\u0442\u043E\u0432\u0435\u0440\u0435\u043D\u0438\u0435\u043C",
+          icon: "/@/images/obj/fight_item/migrant4_128.png",
+        },
+        {
+          text: "\u0432\u044B\u0441\u0430\u0436\u0438\u0432\u0430\u0435\u0442 \u0432 \u0431\u043E\u0439 \u0414\u0435\u0441\u0430\u043D\u0442",
+          icon: "/@/images/ico/ability/heli_cage.png",
+        },
+        {
+          text: "\u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044F \u0438 \u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442 \u0411\u0430\u043B\u043B\u0430\u0441\u0442",
+          icon: "/@/images/ico/ability/afg.png",
+        },
+        {
+          text: "\u043F\u0440\u043E\u043B\u0435\u0442\u0430\u0435\u0442 \u043D\u0430 \u0434\u0436\u0435\u0442\u0435 \u0438 \u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u0432\u043E\u044E \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0443\u044E \u044F\u0440\u043E\u0441\u0442\u044C",
+          icon: "/@/images/obj/cars/361-big.png",
+        },
+        {
+          text: "\u043F\u0440\u043E\u0433\u043E\u043D\u044F\u0435\u0442 \u0432\u0441\u0435\u0445 \u0432\u0442\u043E\u0440\u044B\u0445 \u043F\u0438\u0442\u043E\u043C\u0446\u0435\u0432",
+          icon: "/@/images/obj/../ico/ability/burrito_abil.png",
+        },
+        {
+          text: "\u041F\u0440\u0438\u0448\u0435\u043B\u0435\u0446 \u0437\u0430\u0440\u0430\u0436\u0430\u0435\u0442 \u043F\u0430\u0440\u0430\u0437\u0438\u0442\u043E\u043C",
+          icon: "/@/images/ico/ability/alien_par.png",
+        },
+        {
+          text: "\u041C\u0430\u0440\u0441\u0438\u0430\u043D\u0438\u043D",
+          icon: "/@/images/loc/mars/abils/abil5.png",
+        },
+        {
+          text: "\u0440\u0430\u043A\u0435\u0442\u0443 DIY",
+          icon: "/@/images/loc/rocket/rocket.png",
+        },
+        {
+          text: "\u0433\u043E\u0440\u044F\u0447\u0443\u044E \u043A\u0430\u0440\u0442\u043E\u0448\u043A\u0443",
+          icon: "/@/images/loc/mars/potato@2x.png",
+        },
+        {
+          text: "\u0433\u0438\u043F\u043D\u043E\u0442\u0438\u0437\u0438\u0440\u0443\u0435\u0442",
+          icon: "/@/images/ico/ability/abys_abil.png",
+        },
+        {
+          text: "\u0422\u0438\u0442\u0430\u043D\u043E\u0441 \u0434\u0435\u043B\u0430\u0435\u0442 \u0432\u0435\u043B\u0438\u043A\u0438\u043C",
+          icon: "/@/images/loc/tanos/talant_3.png",
+        },
+        {
+          text: "\u0440\u043E\u0439 \u043F\u0447\u0451\u043B",
+          icon: "/@/images/obj/bear_ability/bear_ability_1.png",
+        },
+        {
+          text: "\u0440\u043E\u0439 \u043F\u0447\u0451\u043B",
+          icon: "/@/images/obj/bear_ability/bear_ability_1.png",
+        },
+        {
+          text: "\u0411\u041F\u041B\u0410",
+          icon: "/@/images/obj/cars/338-big.png",
+        },
+        {
+          text: "\u043F\u0440\u044F\u0447\u0435\u0442\u0441\u044F \u043F\u043E\u0434 \u043A\u0440\u044B\u043B\u043E\u043C \u0441\u0430\u043C\u043E\u043B\u0451\u0442\u0430 \u0438 \u0435\u0433\u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u043D\u0435 \u043F\u0430\u0434\u0430\u0435\u0442 \u043D\u0438\u0436\u0435",
+          icon: "/@/images/obj/cars/319-big.png",
+        },
+        {
+          text: "\u043A\u0443\u0431\u0440\u0438\u043A-\u0440\u0443\u0431\u0438\u043A\u0430",
+          icon: "/@/images/obj/gifts2025/ny/rubik/8_256.png",
+        },
+      ];
+      function r(l, p) {
+        return p || console.log(l), p.split(/\s+/).every((d) => l.includes(d));
+      }
+      let a = $("<div>").css({
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+        }),
+        s = new Map();
+      e.children().each(function () {
+        let l = $(this),
+          p = l.text();
+        for (let { text: d, icon: g, action: u, condition: w } of o)
+          r(p, d) &&
+            (!w || w(l)) &&
+            (d.includes("") &&
+              (s.has(d) ||
+                s.set(
+                  d,
+                  Ft({
+                    toggleText: `<img src="${g}" style="height:64px; width: 64px;" class="ability-log-icon" />`,
+                    items: [],
+                    className: "ability-log-container",
+                    isOpen: !1,
+                  })
+                )),
+            g && Sn(l, g),
+            u && u(l),
+            s.get(d).append(l));
+        t &&
+          p.includes(t) &&
+          !p.toLowerCase().includes("\u043A\u043B\u043E\u043D") &&
+          n.append(l);
+      }),
+        s.forEach((l) => a.append(l)),
+        e.append(a);
+      let c = Ft({
+        toggleText: "\u041C\u043E\u0438 \u043B\u043E\u0433\u0438",
+        className: "me-logs",
+        items: [n],
+        isOpen: !0,
+      }).css({
+        outline: "4px inset lightseagreen",
+        borderRadius: "2px",
+        padding: "6px 0px",
+      });
+      !$(".me-logs").length && n.length > 0 && e.prepend(c);
+    }
+    function Tn(t) {
+      var e = $("<div>").css("display", "flex").css("flexDirection", "column"),
+        n,
+        o = [],
+        r = [],
+        a = [];
+      t.find("li").each(function () {
+        var s = $(this),
+          c = s.find(".player-rage");
+        if (c.length) {
+          var l = parseFloat(c.find(".percent").css("width"));
+          s.hasClass("me")
+            ? (n = s)
+            : s.hasClass("dead")
+              ? o.push(s)
+              : s
+                    .find(".user")
+                    .text()
+                    .includes(
+                      "\u0411\u0440\u0430\u0442 \u041C\u0438\u0445\u0430\u043B\u044B\u0447\u0430"
+                    )
+                ? a.push({ li: s, rage: l })
+                : r.push({ li: s, rage: l });
+        }
+      }),
+        r.sort(function (s, c) {
+          return c.rage - s.rage;
+        }),
+        a.sort(function (s, c) {
+          return c.rage - s.rage;
+        }),
+        n && e.prepend(n),
+        r.forEach(function (s) {
+          e.append(s.li);
+        }),
+        a.forEach(function (s) {
+          e.append(s.li);
+        }),
+        o.forEach(function (s) {
+          e.append(s);
+        }),
+        t.prepend(e);
+    }
+    function Sn(t, e) {
+      t.css({ display: "flex", alignItems: "center", gap: "4px" });
+      let n = $("<img>").attr("src", e).css({ width: "32px", height: "32px" }),
+        o = $("<span>").html(t.html());
+      t.empty().append(n).append(o);
+    }
