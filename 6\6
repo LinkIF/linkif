@@ -1,0 +1,1050 @@
+=== Часть 6\6 ====
+
+var z = {
+      Madness: {
+        turns: "2",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0431\u0435\u0448\u0435\u043D\u0441\u0442\u0432\u043E \u043D\u0430 2 \u0445\u043E\u0434\u0430")',
+        image:
+          '<i class="icon-madness deaf" style="margin:1px; filter:contrast(2.0);"></i>',
+      },
+      MadTrump: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u043E\u0442\u043F\u0440\u0430\u0432\u043B\u044F\u0435\u0442 \u0432 \u0431\u0435\u0437\u0443\u043C\u0438\u0435")',
+        image:
+          '<i class="icon-madness deaf" style="margin:1px; filter:contrast(2.0);"></i>',
+      },
+      superhit6: {
+        turns: "1",
+        cnt: "",
+        pn: "mf",
+        fstr: 'p:contains("\u0432\u043F\u0430\u0434\u0430\u0435\u0442 \u0432 \u0431\u0435\u0437\u0443\u043C\u0438\u0435 \u043D\u0430 1 \u0445\u043E\u0434!"):not(:contains("\u0437\u043C\u0435\u044F"))',
+        image: '<i class="icon-madness deaf"></i>',
+      },
+      Snake: {
+        turns: "1",
+        cnt: "",
+        pn: "mf",
+        fstr: 'p:contains("\u0432\u043F\u0430\u0434\u0430\u0435\u0442 \u0432 \u0431\u0435\u0437\u0443\u043C\u0438\u0435 \u043D\u0430 1 \u0445\u043E\u0434!"):contains("\u0437\u043C\u0435\u044F")',
+        image:
+          '<img class="icon deaf" src="/@/images/obj/pets/28-8.png" style="margin:1px;">',
+      },
+      Stun: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains(" \u0443\u043C\u0438\u043B\u044C\u043D\u043E \u0441\u043C\u043E\u0442\u0440\u0438\u0442 \u043D\u0430")',
+        image: '<span class="stun deaf"><i style="margin:1px;"></i></span>',
+      },
+      totem: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0442\u043E\u0442\u0435\u043C\u0430 \u043E\u0433\u043B\u0443\u0448\u0430\u0435\u0442")',
+        image: '<span class="stun deaf"><i style="margin:1px;"></i></span>',
+      },
+      Bear: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E \u043E\u0433\u043B\u0443\u0448\u0430\u0435\u0442"):not(:contains("\u041F\u0443\u0433\u0430\u043B\u043E"))',
+        image:
+          '<i class="icon icon-bear deaf" style="filter: contrast(10.0); margin:1px; zoom:0.8;"></i>',
+      },
+      Snowman: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E \u043E\u0433\u043B\u0443\u0448\u0430\u0435\u0442"):contains("\u041F\u0443\u0433\u0430\u043B\u043E")',
+        image:
+          '<img  class="icon deaf" src="/@/images/obj/beast_ability/ability11.png" style="filter:contrast(2.0);">',
+      },
+      Knockout: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0432\u044B\u0437\u044B\u0432\u0430\u0435\u0442 \u043B\u0430\u0432\u0438\u043D\u0443")',
+        image:
+          '<i class="icon icon-set-perk-knockout deaf" style="margin:1px;"></i>',
+      },
+      Bike: {
+        turns: "1",
+        cnt: "",
+        pn: "",
+        fstr: "",
+        image: '<i class="icon icon-bike deaf" style="margin:1px;"></i>',
+      },
+      Hamsters: {
+        turns: "",
+        cnt: "",
+        pn: "h",
+        fstr: 'p:contains("\u0436\u0435\u0432\u0430\u0442\u044C \u043F\u0440\u043E\u0432\u043E\u0434\u0430")',
+        image:
+          '<img  class="icon" src="/@/images/obj/pets/25-1.png" style="margin:1px; filter:contrast(2.0);">',
+      },
+      Hamshams: {
+        turns: "-1",
+        cnt: "",
+        pn: "hh",
+        fstr: 'p.hamster:contains("\u043F\u0440\u0438\u0446\u0435\u043B\u0438\u0432\u0430\u0435\u0442\u0441\u044F \u0438 \u043D\u0430\u043F\u0430\u0434\u0430\u0435\u0442")',
+        image: "",
+      },
+      Robots_b: {
+        turns: "4",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0441\u0438\u043B\u043E\u0432\u043E\u0439 \u0431\u0440\u043E\u043D\u0435\u0439")',
+        image:
+          '<img class="icon" src="/@/images/obj/pets/29-4.png" style="margin:1px; filter:contrast(10.0);">',
+      },
+      Robots_o: {
+        turns: "4",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0430\u043A\u0442\u0438\u0432\u0438\u0440\u0443\u0435\u0442 \u043E\u0442\u0440\u0430\u0436\u0435\u043D\u0438\u0435")',
+        image:
+          '<img class="icon" src="/@/images/obj/pets/29-4.png" style="margin:1px; position:inherit; filter:hue-rotate(-90deg) opacity(60%);">',
+      },
+      Zimtime: {
+        turns: "",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0437\u0438\u043C\u043D\u0435\u0435 \u0432\u0440\u0435\u043C\u044F")',
+        image:
+          '<span class="sovetabil3"><i class="icon" style="margin:1px;"></i></span>',
+      },
+      Tornados: {
+        turns: "4",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0437\u0430\u0449\u0438\u0442\u0443 \u043E\u0442 \u0443\u0440\u043E\u043D\u0430 \u0438 \u0433\u0440\u0430\u043D\u0430\u0442 \u043D\u0430 70%")',
+        image:
+          '<img class="icon" src="/@/images/obj/superhits/superhit-10-3.png" style="margin:1px;">',
+      },
+      antigrnt: {
+        turns: "4",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0429\u0438\u0442"):not(:contains("\u0421\u0442\u0430\u043B\u044C\u043D\u043E\u0439"))',
+        image:
+          '<span class="icon icon-antigranata" style="margin:1px; zoom:0.9;"></span>',
+      },
+      antigrnt2: {
+        turns: "2",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0421\u0442\u0430\u043B\u044C\u043D\u043E\u0439 \u0449\u0438\u0442")',
+        image:
+          '<span class="icon icon-antigranata2" style="margin: 1px; zoom:0.9;"></span>',
+      },
+      helmet: {
+        turns: "2",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041F\u0440\u043E\u0431\u043A\u043E\u0432\u0430\u044F \u043A\u0430\u0441\u043A\u0430")',
+        image: '<span class="icon icon-helmet" style="margin: 1px;"></span>',
+      },
+      helmet3: {
+        turns: "3",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041D\u043E\u0432\u043E\u0433\u043E\u0434\u043D\u0438\u0439 \u043D\u0430\u043F\u0438\u0442\u043E\u043A")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon73.png" style="margin:1px;">',
+      },
+      reflect: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043E\u0432\u0430\u0440\u043D\u0430\u044F \u043F\u0440\u0443\u0436\u0438\u043D\u0430")',
+        image: '<span class="icon icon-reflect" style="margin: 1px;"></span>',
+      },
+      durian: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0414\u0443\u0440\u0438\u0430\u043D \xAB\u0417\u0430\u043C\u043E\u0440\u0441\u043A\u0438\u0439\xBB"):not(:contains("\u043A\u0443\u0448\u0430\u0435\u0442"))',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon76.png" style="margin:1px;">',
+      },
+      kokos: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041E\u0440\u0435\u0445 \xAB\u041A\u043E\u043A\u043E\u0441\u043E\u0432\u044B\u0439\xBB"):not(:contains("\u043A\u0443\u0448\u0430\u0435\u0442"))',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon74.png" style="margin:1px;">',
+      },
+      tikva: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0422\u044B\u043A\u0432\u0430 \xAB\u041A\u043E\u043B\u0445\u043E\u0437\u043D\u0430\u044F\xBB"):not(:contains("\u043A\u0443\u0448\u0430\u0435\u0442"))',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon75.png" style="margin:1px;">',
+      },
+      granat: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442 \xAB\u041E\u0441\u043A\u043E\u043B\u043E\u0447\u043D\u044B\u0439\xBB"):not(:contains("\u043A\u0443\u0448\u0430\u0435\u0442"))',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon77.png" style="margin:1px;">',
+      },
+      rolls: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0420\u043E\u043B\u043B\u044B")',
+        image:
+          '<img class="icon" src="/@/images/obj/drugs148.png" style="margin:1px;">',
+      },
+      vokker: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0412\u043A\u0443\u0441\u043D\u044B\u0439 \u0432\u043E\u043A\u043A\u0435\u0440")',
+        image:
+          '<img class="icon" src="/@/images/obj/drugs179.png" style="margin:1px;">',
+      },
+      food87: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0410\u043F\u0442\u0435\u0447\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440 \xAB\u041A\u0440\u0430\u0441\u043D\u044B\u0439\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon87.png" style="margin:1px;">',
+      },
+      food86: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0410\u043F\u0442\u0435\u0447\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440 \xAB\u041E\u0440\u0430\u043D\u0436\u0435\u0432\u044B\u0439\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon86.png" style="margin:1px;">',
+      },
+      food79: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041B\u0435\u0434\u0435\u043D\u0446\u044B \u0441 \u0438\u0433\u043E\u043B\u043A\u0430\u043C\u0438")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon79.png" style="margin:1px;">',
+      },
+      food80: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041D\u043E\u0432\u043E\u0433\u043E\u0434\u043D\u044F\u044F \u043A\u0430\u0440\u0430\u043C\u0435\u043B\u044C")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon80.png" style="margin:1px;">',
+      },
+      cheese: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0410\u0440\u043E\u043C\u0430\u0442\u043D\u044B\u043C \u0441\u044B\u0440\u043E\u043C")',
+        image:
+          '<span class="icon icon-cheese" style="margin: 1px; zoom:0.9;"></span>',
+      },
+      migrant: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0422\u0440\u0443\u0434\u043E\u0432\u043E\u0439 \u043A\u043D\u0438\u0436\u043A\u043E\u0439")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/migrant.png" style="margin:1px;">',
+      },
+      lenin: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u043F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0412\u043E\u0436\u0434\u044F")',
+        image:
+          '<img class="icon" src="/@/images/obj/neftlenin_head.png" style="margin:1px;">',
+      },
+      grena82: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442\u0430 \xAB\u041F\u043E\u0440\u0430\u0437\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon82.png" style="margin:1px;">',
+      },
+      grena83: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442\u0430 \xAB\u0414\u0443\u0445\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon83.png" style="margin:1px;">',
+      },
+      grena84: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442\u0430 \xAB\u041A\u0438\u0441\u043B\u043E\u0442\u043D\u0430\u044F\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon84.png" style="margin:1px;">',
+      },
+      grena85: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442\u0430 \xAB\u0421\u0432\u0435\u0442\u043B\u044F\u0447\u043E\u043A\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon85.png" style="margin:1px;">',
+      },
+      grena66m1: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043E\u043A\u0442\u0435\u0439\u043B\u044C \u041C\u043E\u043B\u043E\u0442\u043E\u0432\u0430 [\u0423\u043B\u044C\u0442\u0440\u0430]")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon66_mf1.png" style="margin:1px;">',
+      },
+      grena66: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043E\u043A\u0442\u0435\u0439\u043B\u044C \u041C\u043E\u043B\u043E\u0442\u043E\u0432\u0430"):not(:contains("[\u0423\u043B\u044C\u0442\u0440\u0430]"))',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon66.png" style="margin:1px;">',
+      },
+      grena63m2: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043B\u0430\u0441\u0442\u0435\u0440\u043D\u0430\u044F \u0433\u0440\u0430\u043D\u0430\u0442\u0430 [\u041C\u0435\u0433\u0430]")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon63_mf2.png" style="margin:1px;">',
+      },
+      grena63m1: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043B\u0430\u0441\u0442\u0435\u0440\u043D\u0430\u044F \u0433\u0440\u0430\u043D\u0430\u0442\u0430 [\u0423\u043B\u044C\u0442\u0440\u0430]")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon63_mf1.png" style="margin:1px;">',
+      },
+      grena63: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u043B\u0430\u0441\u0442\u0435\u0440\u043D\u0430\u044F \u0433\u0440\u0430\u043D\u0430\u0442\u0430"):not(:contains("[\u0423\u043B\u044C\u0442\u0440\u0430]")):not(:contains("[\u041C\u0435\u0433\u0430]"))',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon63.png" style="margin:1px;">',
+      },
+      c4: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0412\u0437\u0440\u044B\u0432\u0447\u0430\u0442\u043A\u0430 \u04214")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon88.png" style="margin:1px;">',
+      },
+      grena37: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0431\u043E\u043C\u0431\u0430-\u0432\u043E\u043D\u044E\u0447\u043A\u0430")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon37.png" style="margin:1px;">',
+      },
+      grena38: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0425\u043B\u043E\u043F\u0443\u0448\u043A\u0430\u2014\u0440\u0430\u0437\u043B\u0443\u0447\u043D\u0438\u0446\u0430")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon38.png" style="margin:1px;">',
+      },
+      grena46: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u041C\u043E\u0449\u043D\u044B\u0439 \u0441\u043D\u0435\u0436\u043E\u043A")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon46.png" style="margin:1px;">',
+      },
+      grena79: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0412\u0437\u0440\u044B\u0432\u043D\u043E\u0439 \u043C\u0430\u043D\u0434\u0430\u0440\u0438\u043D")',
+        image:
+          '<img class="icon" src="/@/images/obj/fight_item/weapon79.png" style="margin:1px;">',
+      },
+      grduck: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0413\u0440\u0430\u043D\u0430\u0442\u0430 \xAB\u0423\u0442\u043E\u0447\u043A\u0430\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/dung_prize/duck.png" style="margin:1px;">',
+      },
+      easydo: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0421\u0432\u0435\u0442\u043E\u0448\u0443\u043C\u043E\u0432\u0430\u044F \u0433\u0440\u0430\u043D\u0430\u0442\u0430")',
+        image:
+          '<img class="icon" src="/@/images/obj/weapon62.png" style="margin:1px;">',
+      },
+      svistok: {
+        turns: "1",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0432 \u0431\u043E\u0439 \u043E\u0442\u0440\u044F\u0434 \u041E\u041C\u041E\u041D\u0430")',
+        image:
+          '<img class="icon" src="/@/images/obj/item28.png" style="margin:1px;">',
+      },
+      easytarg: {
+        turns: "5",
+        cnt: "",
+        pn: "et",
+        fstr: 'p:contains("\u0421\u0432\u0435\u0442\u043E\u0448\u0443\u043C\u043E\u0432\u0430\u044F \u0433\u0440\u0430\u043D\u0430\u0442\u0430")',
+        image: '<i class="icon icon-easytarget" style="margin:1px;"></i>',
+      },
+      dim: {
+        turns: "2",
+        cnt: "1",
+        pn: "f",
+        fstr: 'p:contains("\u0414\u044B\u043C\u043E\u0432\u0430\u044F \u0448\u0430\u0448\u043A\u0430")',
+        image: '<i class="icon icon-foggranade" style="margin:1px;"></i>',
+      },
+      sovetabil7: {
+        turns: "1",
+        cnt: "5",
+        pn: "f",
+        fstr: 'p:contains("\u043A\u043E\u043C\u0430\u043D\u0434\u0443\u0435\u0442 \u041E\u041C\u041E\u041D\u0443")',
+        image:
+          '<span class="sovetabil7"><i class="icon" style="margin:1px;"></i></span>',
+      },
+      sovetabil1: {
+        turns: "1",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0432\u043E\u043E\u0434\u0443\u0448\u0435\u0432\u043B\u044F\u0435\u0442 \u0438\u0437\u0431\u0438\u0440\u0430\u0442\u0435\u043B\u0435\u0439")',
+        image:
+          '<span class="sovetabil1"><i class="icon" style="margin:1px;"></i></span>',
+      },
+      periscope: {
+        turns: "1",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0432\u044B\u0437\u044B\u0432\u0430\u0435\u0442 \u043F\u043E\u0434\u043B\u043E\u0434\u043A\u0443")',
+        image: '<span class="sub-periscope"><i></i></span>',
+      },
+      "rage-1": {
+        turns: "",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0432\u0441\u043F\u043B\u044B\u0432\u0430\u0435\u0442 \u0441\u043E \u0434\u043D\u0430")',
+        image:
+          '<span class="rage-1"><i style="zoom:0.9; margin:1px;"></i></span>',
+      },
+      car_sw2: {
+        turns: "3",
+        cnt: "5",
+        pn: "f",
+        fstr: 'p:contains("\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u0443\u044E \u0437\u0430\u0449\u0438\u0442\u0443")',
+        image:
+          '<img class="icon" src="/css/images/obj/beast_ability/ability_sw_hide.png" style="margin:1px;">',
+      },
+      ruslan: {
+        turns: "1",
+        cnt: "9",
+        pn: "f",
+        fstr: 'p:contains("\u043F\u043E\u043F\u043E\u043B\u043D\u044F\u0435\u0442 \u0437\u0430\u043F\u0430\u0441\u044B \u0431\u043E\u0435\u043F\u0440\u0438\u043F\u0430\u0441\u043E\u0432")',
+        image:
+          '<img class="icon" src="/@/images/obj/cars/70.png" style="margin:1px; filter: contrast(2.0);">',
+      },
+      tramp: {
+        turns: "1",
+        cnt: "5",
+        pn: "f",
+        fstr: 'p:contains("\u0432\u0435\u043B\u0438\u043A\u0438\u043C, \u043A\u0430\u043A")',
+        image:
+          '<img class="icon" src="/@/images/loc/trump/talant_3.png" style="margin:1px; filter: contrast(2.0);">',
+      },
+      mgs: {
+        turns: "1",
+        cnt: "5",
+        pn: "l",
+        fstr: 'p:contains("\u041C\u043E\u0441\u0413\u043E\u0441\u0421\u0442\u0440\u0430\u0445")',
+        image:
+          '<img class="icon" src="/@/images/obj/8march2/items/128/6.png" style="margin:1px; filter: contrast(2.0);">',
+      },
+      rabbit: {
+        turns: "1",
+        cnt: "5",
+        pn: "l",
+        fstr: 'p:contains("\u041F\u0430\u0441\u0445\u0430\u043B\u044C\u043D\u044B\u0439 \u043A\u0440\u043E\u043B\u0438\u043A")',
+        image:
+          '<img class="icon" src="/@/images/obj/rabbit.png" style="margin:1px;">',
+      },
+      rocketab1: {
+        turns: "1",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0420\u0430\u043A\u0435\u0442\u0430 \u0438\u0433\u0440\u043E\u043A\u0430")',
+        image: '<i class="icon icon-rocket-1" style="margin:1px;"></i>',
+      },
+      sany: {
+        turns: "1",
+        cnt: "2",
+        pn: "f",
+        fstr: 'p:contains("\u043A\u0430\u0442\u0430\u0435\u0442\u0441\u044F \u043D\u0430 \u0441\u0430\u043D\u044F\u0445")',
+        image:
+          '<img class="icon" src="/@/images/obj/cars/56.png" style="margin:1px;">',
+      },
+      roketxsany: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u044C \u041D\u043E\u0432\u043E\u0433\u043E\u0434\u043D\u0435\u0435 \u0432\u044B\u0437\u0434\u043E\u0440\u043E\u0432\u043B\u0435\u043D\u0438\u0435")',
+        image:
+          '<img class="icon" src="/@/images/obj/cars/56.png" style="margin:1px;"><span style="color:#001dff; margin-left:-10px; font-size:14px;">&otimes;</span>',
+      },
+      gazi: {
+        turns: "1",
+        cnt: "2",
+        pn: "f",
+        fstr: 'p:contains("\u0416\u0435\u0440\u0442\u0432\u0430 \u043E\u0442\u0440\u0430\u0432\u043B\u044F\u0435\u0442\u0441\u044F")',
+        image:
+          '<img class="icon" src="/@/images/obj/cars/51.png" style="margin:1px;">',
+      },
+      roketxgazi: {
+        turns: "1",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u044C \u0412\u044B\u0445\u043B\u043E\u043F\u043D\u044B\u0435 \u0433\u0430\u0437\u044B")',
+        image:
+          '<img class="icon" src="/@/images/obj/cars/51.png" style="margin:1px;"><span style="color:#ff0000; margin-left:-10px; font-size:14px;">&otimes;</span>',
+      },
+      rocketab2: {
+        turns: "1",
+        cnt: "9",
+        pn: "f",
+        fstr: 'p:contains("\u043E\u0431\u043B\u0435\u0442\u0435\u0432 \u0432\u043E\u043A\u0440\u0443\u0433 \u0417\u0435\u043C\u043B\u0438")',
+        image: '<i class="icon icon-rocket-2" style="margin:1px;"></i>',
+      },
+      noheal: {
+        turns: "",
+        cnt: "",
+        pn: "l",
+        fstr: 'p:contains("\u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435 \u043D\u0438\u0447\u0435\u043C")',
+        image:
+          '<span class="icon icon-heal" style="margin:1px;position:relative;"><span style="color:#ff0000; position:absolute; font-size:14px; left:4px; top:-4px;">&otimes; </span></span>',
+      },
+      car_sw: {
+        turns: "1",
+        cnt: "5",
+        pn: "f",
+        fstr: 'p:contains("\u0417\u0432\u0435\u0437\u0434\u0430 \u0441\u043C\u0435\u0440\u0442\u0438")',
+        image:
+          '<img class="icon" src="/css/images/obj/beast_ability/ability_sw_deathray_2.png" style="margin:1px;">',
+      },
+      forcejoin: {
+        turns: "1",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0432\u043C\u0435\u0448\u0438\u0432\u0430\u0435\u0442\u0441\u044F \u0432 \u0431\u043E\u0439")',
+        image: '<span class="icon icon-forcejoin" style="margin:1px;"></span>',
+      },
+      kgranat: {
+        turns: "4",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u0430\u043B\u044C\u044F\u043D \xAB\u0413\u0440\u0430\u043D\u0430\u0442\u043E\u0432\u044B\u0439\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/shisha/red1.png" style="margin:1px;">',
+      },
+      kled: {
+        turns: "6",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u041A\u0430\u043B\u044C\u044F\u043D \xAB\u041B\u0435\u0434\u044F\u043D\u043E\u0439\xBB")',
+        image:
+          '<img class="icon" src="/@/images/obj/shisha/frost1.png" style="margin:1px;">',
+      },
+      nokick: {
+        turns: "2",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u041D\u0435 \u0431\u0435\u0439\u0442\u0435 \u0435\u0433\u043E!")',
+        image:
+          '<span class="red">\u041D\u0435 \u0431\u0438\u0442\u044C! </span>',
+      },
+      malina: {
+        turns: "1",
+        cnt: "",
+        pn: "f",
+        fstr: 'p:contains("\u0440\u0430\u0437\u0433\u0430\u0434\u044B\u0432\u0430\u0435\u0442 \u041A\u043E\u043C\u0431\u0438\u043D\u0430\u0446\u0438\u044E \u041F\u0430\u0445\u0430\u043D\u0430")',
+        image:
+          '<img class="icon" src="/@/images/obj/vovan_note.png" style="margin:1px;">',
+      },
+    };
+    var X = window.Moscowpoly,
+      qe = window.SteppedEase,
+      Z = window.TweenLite;
+    function Pe() {
+      (X.animateDices = function (t) {
+        var e = this,
+          n = this.$dice1,
+          o = this.$dice2;
+        n.unbind("click"),
+          o.unbind("click"),
+          n.removeAttr("style"),
+          n.css({ "background-position": "0 0" }).show(0);
+        var r = mt_rand(10, 20),
+          a = (mt_rand(1, 2) * r) / 1e3,
+          s = Z.to(n, a, {
+            backgroundPosition: -1 * 65 * r + "px 0",
+            ease: qe.config(r),
+            paused: !0,
+            onComplete: function () {
+              n
+                .css("background-position", "")
+                .removeClass("i-1 i-2 i-3 i-4 i-5 i-6")
+                .addClass("i-" + t[0]),
+                a >= l && e.onAnimateDicesComplete();
+            },
+          });
+        o.removeAttr("style"), o.css("background-position", "0 -65px").show(0);
+        var c = mt_rand(10, 20),
+          l = (mt_rand(1, 2) * c) / 1e3,
+          p = Z.to(o, l, {
+            backgroundPosition: -1 * 65 * c + "px -65px",
+            ease: qe.config(c),
+            paused: !0,
+            onComplete: function () {
+              o
+                .css("background-position", "")
+                .removeClass("i-1 i-2 i-3 i-4 i-5 i-6")
+                .addClass("i-" + t[1]),
+                a < l && e.onAnimateDicesComplete();
+            },
+          }),
+          d = X.dicePositions[mt_rand(0, X.dicePositions.length - 1)];
+        n.css(d);
+        var g = { ease: Power1.easeOut, paused: !0 };
+        for (var u in d) g[u] = mt_rand(90, 350);
+        var w = Z.to(n, a, g);
+        o.css(d);
+        var b = { ease: Power1.easeOut, paused: !0 };
+        for (var u in d)
+          (b[u] = mt_rand(90, 350)),
+            Math.abs(g[u] - b[u]) < 35 && (g[u] += g[u] > b[u] ? 50 : -50);
+        var M = Z.to(o, l, b);
+        s.play(), p.play(), w.play(), M.play();
+      }),
+        (X.animateFigureRoute = function (t) {
+          if (t.length == 0) {
+            this.setInAction(!1),
+              this.setCellActive(this.data.current),
+              this.updateInfoHTML(),
+              this.initState();
+            return;
+          }
+          var e = this,
+            n = X.getFigurePositionByCell(t[0]);
+          Z.to(this.$figure, 0.1, {
+            top: n.top,
+            left: n.left,
+            ease: Linear.easeNone,
+            paused: !1,
+            onComplete: function () {
+              (t = t.splice(1, t.length - 1)), e.animateFigureRoute(t);
+            },
+          });
+        }),
+        (X.doActivate = function () {
+          if (!this.inAction) {
+            this.setInAction(!0);
+            var t = this;
+            postUrl(
+              "/home/moscowpoly_activate/",
+              { action: "moscowpoly_activate", ajax: 1 },
+              "post",
+              function (e) {
+                (t.state = e.state),
+                  t.setInAction(!1),
+                  t.updateInfoHTML(),
+                  t.initState();
+              }
+            );
+          }
+        });
+    }
+    var On = [
+      {
+        selector:
+          "#content > div > div.boss-common-block > div.boss-common-bottom-panel > div > div > span.boss-common-active-from-value",
+        url: "https://www.moswar.ru/shaman/",
+        imgSrc: "/@/images/loc/shaman/abil_6.png",
+        targetHref: "/shaman/",
+      },
+      {
+        selector:
+          "#content > div > div > div.grumpy2019-bottom-panel > div.grumpy2019-available-block > span.grumpy2019-available-value",
+        url: "https://www.moswar.ru/grumpy/",
+        imgSrc: "/@/images/loc/grumpy/abils/abil_1.png",
+        targetHref: "/grumpy/",
+      },
+      {
+        selector:
+          "#content > div > div > div.boss-common-available-block > span.boss-common-available-value",
+        url: "https://www.moswar.ru/hacker/",
+        imgSrc: "/@/images/obj/gifts2024/may/hacker.png",
+        targetHref: "/hacker/",
+      },
+      {
+        selector:
+          "#content > div > div.rocket2023-block > div.rocket2023-available-block > span.rocket2023-available-value",
+        url: "https://www.moswar.ru/kosmodromx/",
+        imgSrc: "/@/images/obj/gifts2023/may/abil_kosm_smoke.png",
+        targetHref: "/kosmodromx/",
+      },
+      {
+        selector: "TODO dyi selector",
+        url: "https://www.moswar.ru/kosmodromx/",
+        imgSrc: "/@/images/loc/rocket/rocket.png",
+        targetHref: "/kosmodromx/",
+      },
+      {
+        selector:
+          "#hawthorn-popup > div > div.hawthorn-popup__actions > div > span",
+        url: "https://www.moswar.ru/trainer/vip/",
+        imgSrc: "/@/images/loc/vip/hawthorn_icon.png",
+        targetHref: "/trainer/vip/hawthorn/",
+      },
+      {
+        selector:
+          "#content > table > tbody > tr > td:nth-child(2) > div.block-bordered-tattoo > p:nth-child(3) > span",
+        url: "https://www.moswar.ru/nightclub/",
+        imgSrc: "/@/images/obj/8march6/tattoo_mach.png",
+        targetHref: "/nightclub/",
+      },
+      {
+        selector:
+          "#content > div > div.musk2020-bottom-panel > div > div.musk2020-mars-actions.disabled > div > span",
+        url: "https://www.moswar.ru/mars2024/",
+        imgSrc: "/@/images/loc/musk/musk2020-mars2024.png",
+        targetHref: "/mars2024/",
+      },
+      {
+        selector:
+          "#dino-tab-content-2 > div.dinopark-dino-stats > div:last-child > div.dinopark-dino-stat__value > span",
+        url: "https://www.moswar.ru/dinopark/",
+        imgSrc: "/@/images/loc/dinopark/dinoegg.png",
+        targetHref: "/dinopark/",
+      },
+      {
+        selector:
+          "#content > div > div.icecream-fabric > div:nth-child(2) > div.icecream-fabric-item__content > div.icecream-fabric-item-actions > div > span.time",
+        url: "https://www.moswar.ru/toniks/",
+        imgSrc: "/@/images/loc/cocktails/pink_3.png",
+        targetHref: "/toniks/",
+      },
+      {
+        selector:
+          "#content > div > div.pilaf-actions .pilaf-activate-button-inner2",
+        url: "https://www.moswar.ru/teahouse/",
+        imgSrc: "/@/images/loc/pilaf/objs/obj_3.png",
+        targetHref: "/teahouse/",
+      },
+      {
+        selector:
+          "#content > div > div.bender-content > div.bender-use > div > div > button",
+        url: "https://www.moswar.ru/badasrobot/",
+        imgSrc: "/@/images/obj/gifts2017/futurama/bender/head.png",
+        targetHref: "/badasrobot/",
+      },
+    ];
+    async function Nn({
+      selector: t,
+      url: e,
+      imgSrc: n,
+      targetHref: o,
+      onclick: r,
+    }) {
+      if (!t || !e || !n) {
+        console.log("Could not fetch timer. Data missing.");
+        return;
+      }
+      let a = await f(t, e);
+      o === "/dinopark/" &&
+        (n = (
+          await f(".dinopark-dino-pic__img", "https://www.moswar.ru/dinopark/")
+        ).getAttribute("src"));
+      let s = A(
+        `<img style="width: 56px; height: 56px; cursor: pointer; ${o === "/shaman/" && "transform: scale(1.4);transform-origin: center;"}" src=${n} />`
+      );
+      if (a === void 0) return !1;
+      a === null
+        ? (a = A("<span>\u0413\u043E\u0442\u043E\u0432\u043E</span>"))
+        : a.innerText ===
+            "\u0417\u0430\u0431\u0440\u0430\u0442\u044C \u043F\u043E\u0439\u043B\u043E!"
+          ? (a.innerText = "\u0413\u043E\u0442\u043E\u0432\u043E")
+          : countdown(a),
+        (a.style.cssText = Ie.hawthorn),
+        a?.getAttribute("class")?.includes("button") &&
+          $(a).css({ lineHeight: "24px", padding: "3px 12px" }),
+        o === "/badasrobot/" && a.styles;
+      let c = A("<div></div>");
+      return (
+        (c.style.cssText =
+          "display: flex; align-items: center; flex-direction: column;"),
+        c.appendChild(s),
+        c.appendChild(a),
+        o && s.addEventListener("click", () => AngryAjax.goToUrl(o)),
+        r && s.addEventListener("click", r),
+        c
+      );
+    }
+    async function Kt() {
+      let t = async () => {
+          let o = (
+              await Promise.all(
+                On.map(async (s) => {
+                  try {
+                    return await Nn(s);
+                  } catch (c) {
+                    return console.log("Error processing timer:", s, c), null;
+                  }
+                })
+              )
+            ).filter(Boolean),
+            r = A(
+              `<div class="timers-container" style="${Ie.timersContainer}"></div>`
+            );
+          function a() {
+            window.innerWidth < 1330
+              ? (r.style.display = "none")
+              : (r.style.display = "grid");
+          }
+          window.addEventListener("resize", a),
+            a(),
+            r.replaceChildren(...o),
+            document.querySelector(".main-block").appendChild(r);
+        },
+        e = A(`
+      <div class="button" style="position: fixed; top: 32px; right: 8px;" id="timers-trigger"><span class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c" style="padding: 1px 3px;">
+      \u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0422\u0430\u0439\u043C\u0435\u0440\u044B
+      </div></span></div>
+      `);
+      e.addEventListener("click", () => {
+        t(), e.remove();
+      }),
+        document.querySelector(".main-block").appendChild(e);
+    }
+    var Ie = {
+      hawthorn: `
+    text-align: center;
+    margin: auto 4px;
+    font-family: 'bloccregular';
+    font-size: 16px;
+    color: #ffffff;
+    text-shadow: rgb(73, 73, 73) 2px 0px 0px, rgb(73, 73, 73) 1.75517px 0.958851px 0px, rgb(73, 73, 73) 1.0806px 1.68294px 0px, rgb(73, 73, 73) 0.141474px 1.99499px 0px, rgb(73, 73, 73) -0.832294px 1.81859px 0px, rgb(73, 73, 73) -1.60229px 1.19694px 0px, rgb(73, 73, 73) -1.97998px 0.28224px 0px, rgb(73, 73, 73) -1.87291px -0.701566px 0px, rgb(73, 73, 73) -1.30729px -1.5136px 0px, rgb(73, 73, 73) -0.421592px -1.95506px 0px, rgb(73, 73, 73) 0.567324px -1.91785px 0px, rgb(73, 73, 73) 1.41734px -1.41108px 0px, rgb(73, 73, 73) 1.92034px -0.558831px 0px;
+  `,
+      timersContainer: `
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    min-width: 190px;
+    position: fixed;
+    top: 32px;
+    right: 8px;
+    font-size: 79%;
+    font-family: Tahoma, Arial, sans-serif;
+    line-height: 1.3;
+    padding: 12px 6px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    min-width: 190px;
+    `,
+    };
+    var Le = window.player,
+      Xt = window.showAlert;
+    var Vt = {
+      accept: "*/*",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+      "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin",
+      "x-requested-with": "XMLHttpRequest",
+    };
+    async function Rn() {
+      let t = await fetch("https://www.moswar.ru/casino/", {
+          headers: Vt,
+          referrer: "https://www.moswar.ru/casino/",
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body: "action=ore&count=20",
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+        }),
+        { success: e } = await t.json();
+      return { success: e };
+    }
+    async function it(t) {
+      let e = await E();
+      return e
+        ? (Xt(
+            `${t.name}`,
+            `\u{1F6A7} Cooldown in effect. Retrying in ${e} seconds.`
+          ),
+          setTimeout(t, (e + 5) * 1e3),
+          !0)
+        : !1;
+    }
+    async function En(t = "196690061") {
+      await fetch(`https://www.moswar.ru/player/json/withdraw/${t}/`, {
+        headers: {
+          accept: "application/json, text/javascript, */*; q=0.01",
+          "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+          "if-modified-since": new Date().toUTCString(),
+          "sec-ch-ua": '"Chromium";v="131", "Not_A Brand";v="24"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform":
+            Le.nickname === "barifan" ? '"macOS"' : '"Linux"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "x-requested-with": "XMLHttpRequest",
+        },
+        referrer: "https://www.moswar.ru/player/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+      });
+    }
+    async function gt() {
+      try {
+        let e = (
+            await f(
+              "#content > div > table > tbody > tr > td:nth-child(1) > div > div > div.change-area > div.exchange > div.get > div > div > img",
+              "https://www.moswar.ru/factory/build/bronevik/"
+            )
+          ).getAttribute("alt"),
+          o = +(
+            await f(
+              "#content > div > table > tbody > tr > td:nth-child(1) > div > div > div.change-area > div.cooldown-wrapper > span.cooldown",
+              "https://www.moswar.ru/factory/build/bronevik/"
+            )
+          ).getAttribute("endtime");
+        if (
+          e ===
+          "\u041A\u0440\u0430\u0441\u043D\u044B\u0439 \u0441\u0442\u044F\u0433"
+        )
+          return (
+            console.log(`[\u{1F6A9}] Found matching piece: ${e}. Buying it...`),
+            await fetch("https://www.moswar.ru/factory/exchange/", {
+              headers: {
+                accept: "*/*",
+                "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+                "content-type":
+                  "application/x-www-form-urlencoded; charset=UTF-8",
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "same-origin",
+                "x-requested-with": "XMLHttpRequest",
+              },
+              referrer: "https://www.moswar.ru/factory/build/bronevik/",
+              referrerPolicy: "strict-origin-when-cross-origin",
+              body: "action=exchange&code=bronevik&__referrer=%2Ffactory%2Fbuild%2Fbronevik%2F&return_url=%2Ffactory%2Fbuild%2Fbronevik%2F",
+              method: "POST",
+              mode: "cors",
+              credentials: "include",
+            }),
+            setTimeout(gt, 2e3)
+          );
+        console.log(`[\u{1F6A9}] No matching piece. (${e})`);
+        let r = o * 1e3 - Date.now() + 3e3;
+        r > 0
+          ? (console.log(
+              `[\u{1F6A9}] Bronevik check in ${v(Math.floor(r / 1e3))}.`
+            ),
+            setTimeout(gt, r))
+          : console.log("[\u{1F6A9}] Bronevik PIECE CHECK!");
+      } catch (t) {
+        console.log(
+          `[\u{1F6A9}] Could not find bronevik piece.
+`,
+          t
+        ),
+          setTimeout(() => gt(), 1e3);
+      }
+    }
+    async function Hn() {
+      await B("1052323"), await U(), await P(), await C(), await O();
+    }
+    async function Dn() {
+      await Et(),
+        await Ht(),
+        await dt(),
+        await Kt(),
+        ut(),
+        Pe(),
+        Dt(),
+        Gt(),
+        zt(),
+        mt(),
+        console.log("\u2139\uFE0F Enhanced client-side functionality."),
+        window.SMURF_MODE && (console.log("SMURF MODE"), await Me()),
+        $(document).ajaxStop(mt);
+    }
+    async function Me() {
+      await U(1), await P(10), await R(), await C(20);
+      async function t() {
+        await fetch("https://www.moswar.ru/quest/", {
+          headers: {
+            accept: "*/*",
+            "accept-language": "en-GB,en;q=0.9",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-requested-with": "XMLHttpRequest",
+          },
+          referrer: "https://www.moswar.ru/quest/",
+          referrerPolicy: "strict-origin-when-cross-origin",
+          body: "action=nextstep&__ajax=1&return_url=%2Fquest%2F",
+          method: "POST",
+          mode: "cors",
+          credentials: "include",
+        });
+      }
+      $(document).ajaxStop(function () {
+        location.pathname === "/quest/" && t();
+      });
+    }
+    return He(Gn);
+  })();
+  utils_.init();
+  
+  //# sourceMappingURL=bundle.js.map
+    // В Конце СТРОКИ ВСТАВИЛ КОД
+    document.addEventListener("DOMContentLoaded", () => {
+  const observer = new MutationObserver(() => {
+    const target = document.querySelector("#content > div > div.block-bordered");
+    if (typeof Ut === "function" && target && !target.querySelector("button")) {
+      console.log("[🧪] Вызов Ut() для вставки кнопок");
+      Ut();
+      observer.disconnect();
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+ // В ЭТИХ РАМКАХ (В КОНЦЕ СТРОКИ)
+})();
