@@ -1,0 +1,1049 @@
+=== Часть 4\6 ===
+
+function _n() {
+      return $(".me .user a[href*='player']")?.text();
+    }
+    function D(t, e = "") {
+      let n = $(`#${t}`);
+      if (!n.length) {
+        (n = $("<div>", { id: t }).css({
+          position: "fixed",
+          width: "50%",
+          top: "30%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          minHeight: "35vh",
+          "overflow-y": "auto",
+          "overflow-x": "hidden",
+          display: "flex",
+          "flex-wrap": "wrap",
+          "justify-content": "center",
+          "align-items": "center",
+          gap: "10px",
+          padding: "10px",
+          "border-radius": "8px",
+          background: "rgba(0, 0, 0, 0.8)",
+          "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.3)",
+          "z-index": 9999,
+          "scrollbar-width": "thin",
+          "pointer-events": "auto",
+          border: "none",
+        })),
+          e && n.attr("style", `${n.attr("style")}; ${e}`);
+        let o = k({
+            text: "X",
+            onClick: () => {
+              n.remove(), AngryAjax.reload();
+            },
+            title:
+              "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u043E\u043A\u043D\u043E",
+          }),
+          r = $(o).css({ position: "absolute", top: "2%", right: "2%" });
+        n.append(r), $("body").prepend(n);
+      }
+      return n;
+    }
+    var An = [
+        {
+          text: "\u{1F354}",
+          title:
+            "\u0420\u0430\u0431\u043E\u0442\u0430 \u0438 \u043F\u0430\u0442\u0440\u0443\u043B\u044C",
+          onClick: async () => {
+            await U(1), await P(10);
+          },
+        },
+        {
+          text: "\u{1F400}",
+          title:
+            "\u041A\u0440\u044B\u0441\u044B \u0430\u0432\u0442\u043E\u043F\u0438\u043B\u043E\u0442",
+          onClick: async () => await C(5),
+        },
+        {
+          text: "\u{1F4B5}",
+          title:
+            "\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0432\u0430\u043B\u044E\u0442\u0443",
+          className: "show-currency",
+          onClick: async (t) => {
+            let e = t.currentTarget,
+              n = await Cn();
+            $("#currency-container").length
+              ? $("#currency-container").replaceWith(n)
+              : (n.hide(), $(e).parent().append(n), n.slideToggle());
+          },
+          disableAfterClick: !1,
+        },
+        {
+          text: "\u2649\uFE0F",
+          title: "\u0417\u043E\u0434\u0438\u0430\u043A",
+          onClick: async () => await O(),
+        },
+        {
+          text: "\u{1F52E}",
+          title: "\u0421\u0438\u0440\u0438",
+          onClick: async () => await ot(),
+        },
+
+        // ПРОБУЮ ИСПРАВИТЬ 10 БОЕВ
+
+         {
+          text: "\u{1F44A}",
+          title:
+            "10 \u0431\u043E\u0435\u0432 \u0432 \u0437\u0430\u043A\u043E\u0443\u043B\u043A\u0438 (\u041D\u0423\u0416\u0415\u041D \u041C\u0410\u0416\u041E\u0420)",
+          onClick: async () => await St(),
+
+          disableAfterClick: !1,
+        },
+        {
+          text: '<img src="/@/images/obj/jobs/item6.png" style="width: 16px; height: 16px; transform: scale(1.5);">',
+          onClick: nt,
+          title:
+            "\u041A\u0443\u0448\u0430\u0442\u044C \u0441\u043D\u0438\u043A\u0435\u0440\u0441",
+          disableAfterClick: !1,
+        },
+
+        // ТУТ КОНЕЦ КОДА ДЛЯ 10 БОЕВ
+       // НАЧАЛО АВТОБОЙ
+
+
+        /// КОНЕЦ АВТОБОЙ
+
+        // КЛИК ТУРЕЛИ
+
+        /// КЛИК ТУРЕЛИ
+
+        {
+          text: "\u{1F93A}",
+          title:
+            "\u0417\u0430\u043F\u0438\u0441\u044C \u043D\u0430 \u0445\u0430\u043E\u0442 \u0437\u0430 30 \u0441\u0435\u043A\u0443\u043D\u0434 \u0434\u043E \u0431\u043E\u044F, \u043A\u0430\u0436\u0434\u044B\u0435 15 \u043C\u0438\u043D\u0443\u0442.",
+          onClick: At,
+        },
+        {
+          text: "\u{1F454}",
+          title: `\u0417\u0430\u043F\u0438\u0441\u044C \u043D\u0430 \u043F\u0440\u043E\u0442.
+(\u0412\u043E\u043A\u0437\u0430\u043B\u044C\u043D\u044B\u0439)`,
+          onClick: Bt,
+          disableAfterClick: !1,
+        },
+
+        /// ПРИЛИВ БОДРОСТИ
+
+
+
+        /// КОНЕЦ ПРИЛИВ БОДРОСТИ
+
+        // КОЛЛЕКЦИЯ ЩЕЛКУНЧИКА
+
+
+
+       /// КОНЕЦ КОЛЛЕКЦИЯ ЩЕЛКУНЧИКА
+
+      ],
+      jn = [
+        {
+          href: "/dungeon",
+          text: "\u{1F573}\uFE0F \u041F\u043E\u0434\u0437\u0435\u043C\u043A\u0430",
+        },
+        {
+          href: "/neftlenin/",
+          text: "\u{1F6E2}\uFE0F \u041D\u0435\u0444\u0442\u044C",
+        },
+        { href: "/metro/", text: "\u{1F400} \u041A\u0440\u044B\u0441\u044B" },
+        { href: "/square/tvtower/", text: "\u{1F4FA} \u0422\u0412" },
+        { href: "/nightclub/", text: "\u{1FAA9} \u041A\u043B\u0443\u0431" },
+        {
+          href: "/butovo/",
+          text: "\u{1F3D9}\uFE0F \u0411\u0443\u0442\u043E\u0432\u043E"
+            },
+        {
+          href: "/camp/gypsy/",
+          text: "\u2728 \u0426\u044B\u0433\u0430\u043D\u043A\u0430",
+        },
+        {
+          href: "/berezka/section/mixed/",
+          text: "\u{1F6CD}\uFE0F \u0411\u0435\u0440\u0435\u0437\u043A\u0430",
+        },
+        {
+          href: "/metrowar/clan/",
+          text: "\u{1F687} \u041C\u0435\u0442\u0440\u043E\u0432\u0430\u0440",
+        },
+
+        {
+          href: "/sovet/career/",
+          text: "\u{1F454} \u0413\u043E\u0441\u041F\u0440\u043E\u043C",
+        },
+        { href: "/petarena/", text: "\u{1F9AE} \u041F\u0435\u0442\u044B" },
+        { href: "/travel2/", text: "\u{1F30D} \u0420\u0435\u0439\u0434\u044B" },
+        {
+          href: "/automobile/ride/",
+          text: "\u{1F695} \u041F\u043E\u0435\u0437\u0434\u043A\u0430",
+        },
+      ];
+    async function Et() {
+      try {
+        let t = $('<div id="assistant-container"></div>').css({
+          position: "absolute",
+          display: "flex",
+          maxWidth: "120px",
+          maxHeight: "600px",
+          height: "auto",
+          gap: "20px",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          backgroundColor: "rgb(255, 244, 225)",
+          top: "258px",
+          padding: "12px 10px",
+          borderWidth: "2px",
+          borderStyle: "solid",
+          borderColor: "rgb(209, 148, 92)",
+          borderRadius: "12px",
+          zIndex: "999999",
+        });
+        $(".body-bg").append(t),
+          t.hide(),
+          $(document).on("click", () => t.hide()),
+          t.on("click", (n) => n.stopPropagation()),
+          $(document).on("contextmenu", (n) => {
+            n.preventDefault(),
+              t.css({ left: n.pageX, top: n.pageY }).slideToggle("fast");
+          });
+        let e = $('<div id="assistant-autopilot"></div>').css({
+          display: "flex",
+          gap: "8px",
+          width: "100%",
+          minWidth: "80px",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        });
+        An.forEach(
+          ({
+            text: n,
+            title: o,
+            onClick: r,
+            condition: a,
+            disableAfterClick: s,
+          }) => {
+            if (a === !1) return;
+            let c = k({ text: n, title: o, onClick: r, disableAfterClick: s });
+            e.append(c);
+          }
+        ),
+          t.append(e);
+      } catch (t) {
+        console.log(
+          `\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043D\u0430\u0440\u0438\u0441\u043E\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u043D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u0438.
+`,
+          t
+        );
+      }
+    }
+    async function Ht() {
+      if ($("#navbar-links").length > 0) return;
+      let t = $('<div id="navbar-links" class="borderdata"></div>').css({
+        display: "flex",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        gap: "20px 60px",
+        alignItems: "center",
+        padding: "10px 20px",
+        zIndex: "102",
+        border: "none",
+      });
+      jn.forEach(({ href: n, text: o, onClick: r }) => {
+        let a = $("<a></a>").text(o).css("text-decoration", "none");
+        r
+          ? a.attr("href", "#").on("click", (s) => {
+              s.preventDefault(), r();
+            })
+          : a.attr({
+              href: n,
+              onclick: "return AngryAjax.goToUrl(this, event);",
+            }),
+          t.append(a);
+      }),
+        $("#main").children().eq(1).before(t);
+    }
+    async function Cn() {
+      let t = await f(
+          ".borderdata",
+          "https://www.moswar.ru/berezka/section/mixed/"
+        ),
+        e = $('<div id="currency-container"></div>');
+      e.css({
+        width: "100%",
+        "min-width": "120px",
+        display: "flex",
+        "flex-wrap": "wrap",
+        gap: "12px 2px",
+        "justify-content": "space-between",
+      });
+      let n = [...Array.from(t.children)].map((o) => {
+        let r = o.innerText,
+          a = parseInt(r.replace(/[^0-9]/g, ""), 10);
+        return (
+          isNaN(a) ||
+            ((o.title = r),
+            (o.innerHTML = Q(a) + o.querySelector("i").outerHTML)),
+          $(o).css({ display: "inline-flex", alignItems: "center" }),
+          o
+        );
+      });
+      return e.empty().append(n), e;
+    }
+    async function dt() {
+      if (AngryAjax.getCurrentUrl() !== "/player/") {
+        console.log("[redrawMain] Not on /player page.");
+        return;
+      }
+      location.pathname.search(/\/player\/$/) !== -1 && je();
+      function t() {
+        (document.querySelector(
+          "#content > table.inventary > tbody > tr > td.equipment-cell > div"
+        ).style.width = "577px"),
+          (document.querySelector(
+            "#content > table.inventary > tbody > tr > td.equipment-cell > div > dl"
+          ).style.width = "577px"),
+          (document.querySelector(
+            "#content > table.inventary > tbody > tr > td.equipment-cell > div > dl > dd"
+          ).style.width = "577px");
+      }
+      function e() {
+        if (
+          ((document.querySelector("#dopings-accordion").style.width = "80px"),
+          (document.querySelector("#dopings-accordion > dd").style.width =
+            "80px"),
+          $("#dopings-accordion > dd > .object-thumbs").css({
+            height: "955.5px",
+          }),
+          $(".action.use-all-siri").length)
+        )
+          return;
+        let r = $(`
+      <div class="action use-all-siri"><span>\u043E\u0431\u043C\u0435\u043D \u0432\u0441\u0435</span></div>
+    `);
+        r.on("click", async () => {
+          r.hasClass("disabled") ||
+            (r.addClass("disabled"), await jt(), r.removeClass("disabled"));
+        }),
+          $(
+            '.object-thumbs[htab="inventory"] img[src="/@/images/obj/phones/siri_64.png"]'
+          )
+            .parent()
+            .append(r);
+      }
+      function n() {
+        (document.querySelector("#pet-accordion").style.width = "220px"),
+          (document.querySelector(
+            "#pet-accordion > dd > div.object-thumbs"
+          ).style.width = "220px");
+      }
+      let o = document.querySelector(
+        "#content > table.inventary > tbody > tr > td.equipment-cell > div > dl > dd > div:nth-child(1)"
+      );
+      e(),
+        t(),
+        n(),
+        je(),
+        Fn(),
+        o &&
+          o.offsetHeight < 300 &&
+          (console.log("[i] toggle inventory expand"),
+          inventaryExpand.toggle());
+    }
+    var je = function () {
+        typeof localStorage.mw_alerts > "u" && (localStorage.mw_alerts = "[]");
+        let alertsData = JSON.parse(localStorage.mw_alerts);
+        if (alertsData.length > 0) {
+          for (var i in alertsData)
+            showAlert(
+              "\u041E\u043F\u043E\u0432\u0435\u0449\u0435\u043D\u0438\u0435",
+              alertsData[i]
+            );
+          (alertsData = []), (localStorage.mw_alerts = "[]");
+        }
+        (window.parseData = function (t, e) {
+          var n = JSON.parse(t);
+          console.log(n);
+          var o = new Array();
+          for (var r in n.alerts) o.push(n.alerts[r].text);
+          for (var a in n.inventory)
+            if ("inventory-" + n.inventory[a].code + "-btn" == e) {
+              var s = { id: n.inventory[a].id, alerts: o };
+              return s;
+            }
+          var s = { alerts: o };
+          return s;
+        }),
+          (window.parseDataItem = function (t, e) {
+            var n = JSON.parse(t);
+            console.log(n);
+            var o = new Array();
+            for (var r in n.alerts) o.push(n.alerts[r].text);
+            for (var a in n.inventory)
+              if ("/@/images/obj/" + n.inventory[a].image == e) {
+                var s = { id: n.inventory[a].id, alerts: o };
+                return s;
+              }
+            var s = { alerts: o };
+            return s;
+          }),
+          (window.buyNextGift = function (t, e, n, o, r, a) {
+            typeof r > "u" &&
+              (r = "\u041F\u043E\u0434\u0430\u0440\u043E\u043A"),
+              t > 0
+                ? $.get("/player/json/" + o + "/" + e + "/", function (s) {
+                    moswar.showPopup(
+                      r + " \u043E\u0442\u043A\u0440\u044B\u0442!",
+                      "\u041E\u0441\u0442\u0430\u043B\u043E\u0441\u044C: " +
+                        (t - 1),
+                      4e3
+                    );
+                    var c = parseData(s, n);
+                    if (typeof c.id < "u") {
+                      var l = JSON.parse(localStorage.mw_alerts);
+                      for (var p in c.alerts) l.push(c.alerts[p]);
+                      (localStorage.mw_alerts = JSON.stringify(l)),
+                        buyNextGift(t - 1, c.id, n, o, r, a);
+                    } else {
+                      var l = JSON.parse(localStorage.mw_alerts);
+                      for (var p in c.alerts) l.push(c.alerts[p]);
+                      (localStorage.mw_alerts = JSON.stringify(l)),
+                        a == "1"
+                          ? ((localStorage.listGiftsN =
+                              Number(localStorage.listGiftsN) - 1),
+                            Number(localStorage.listGiftsN) < 1 &&
+                              setTimeout("AngryAjax.goToUrl('/player/');", 1e3))
+                          : setTimeout("AngryAjax.goToUrl2('/player/');", 2e3);
+                    }
+                  })
+                : a == "1"
+                  ? ((localStorage.listGiftsN =
+                      Number(localStorage.listGiftsN) - 1),
+                    Number(localStorage.listGiftsN) < 1 &&
+                      setTimeout("AngryAjax.goToUrl2('/player/');", 1e3))
+                  : setTimeout("AngryAjax.goToUrl2('/player/');", 2e3);
+          });
+        var buyNextItem = function (t, e, n, o, r, a) {
+          typeof r > "u" && (r = "\u041F\u0440\u0435\u0434\u043C\u0435\u0442"),
+            t > 0
+              ? $.get("/player/json/" + o + "/" + e + "/", function (s) {
+                  moswar.showPopup(
+                    r + " \u043E\u0442\u043A\u0440\u044B\u0442!",
+                    "\u041E\u0441\u0442\u0430\u043B\u043E\u0441\u044C: " +
+                      (t - 1),
+                    4e3
+                  );
+                  var c = parseDataItem(s, n);
+                  if (typeof c.id < "u") {
+                    var l = JSON.parse(localStorage.mw_alerts);
+                    for (var p in c.alerts) l.push(c.alerts[p]);
+                    (localStorage.mw_alerts = JSON.stringify(l)),
+                      buyNextItem(t - 1, c.id, n, o, r, a);
+                  } else {
+                    var l = JSON.parse(localStorage.mw_alerts);
+                    for (var p in c.alerts) l.push(c.alerts[p]);
+                    (localStorage.mw_alerts = JSON.stringify(l)),
+                      a == "1"
+                        ? ((localStorage.listGiftsN =
+                            Number(localStorage.listGiftsN) - 1),
+                          Number(localStorage.listGiftsN) < 1 &&
+                            setTimeout("AngryAjax.goToUrl2('/player/');", 1e3))
+                        : setTimeout("AngryAjax.goToUrl2('/player/');", 2e3);
+                  }
+                })
+              : a == "1"
+                ? ((localStorage.listGiftsN =
+                    Number(localStorage.listGiftsN) - 1),
+                  Number(localStorage.listGiftsN) < 1 &&
+                    setTimeout("AngryAjax.goToUrl2('/player/');", 1e3))
+                : setTimeout("AngryAjax.goToUrl2('/player/');", 2e3);
+        };
+        (window.multOpenGift = function (t) {
+          var e = $(t).parent().parent().find("img").attr("data-id"),
+            n = $(t).parent().parent().find(".action").attr("id"),
+            o = $(t).parent().parent().find(".action").attr("data-action"),
+            r = [];
+          r.push({
+            title: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C",
+            callback: function (a) {
+              (alertsData = []),
+                buyNextGift(
+                  $("#multbuy").attr("value"),
+                  e,
+                  n,
+                  o,
+                  m.items[e].info.title,
+                  "0"
+                ),
+                closeAlert(a);
+            },
+          }),
+            r.push({
+              title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+              callback: null,
+            }),
+            showConfirm(
+              '<p align="center">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E: <input id="multbuy" value="' +
+                $(t)
+                  .parent()
+                  .parent()
+                  .find(".count")
+                  .text()
+                  .replace(/#/gi, "") +
+                '"></p>',
+              r,
+              {
+                __title:
+                  "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043C\u043D\u043E\u0433\u043E :)",
+              }
+            );
+        }),
+          (window.multOpenItem = function (t) {
+            var e = $(t).parent().parent().find("img").attr("data-id"),
+              n = $(t).parent().parent().find("img").attr("src"),
+              o = $(t).parent().parent().find(".action").attr("data-action"),
+              r = [];
+            r.push({
+              title: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C",
+              callback: function (a) {
+                (alertsData = []),
+                  buyNextItem(
+                    $("#multbuy").attr("value"),
+                    e,
+                    n,
+                    o,
+                    m.items[e].info.title,
+                    "0"
+                  ),
+                  closeAlert(a);
+              },
+            }),
+              r.push({
+                title: "\u041E\u0442\u043C\u0435\u043D\u0430",
+                callback: null,
+              }),
+              showConfirm(
+                '<p align="center">\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E: <input id="multbuy" value="' +
+                  $(t)
+                    .parent()
+                    .parent()
+                    .find(".count")
+                    .text()
+                    .replace(/#/gi, "") +
+                  '"></p>',
+                r,
+                {
+                  __title:
+                    "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u043C\u043D\u043E\u0433\u043E :)",
+                }
+              );
+          }),
+          (window.initializePlayerPageEnhancements = function () {
+            window.enhancePetItems(),
+              window.enhanceEquipmentItems(),
+              window.handleInventoryEnhancements();
+          }),
+          (window.enhancePetItems = function () {
+            $('.object-thumb img[data-type="pet"]').each(function () {
+              let t = $(this);
+              if (
+                t
+                  .parent()
+                  .find(".action")
+                  .attr("onclick")
+                  .match(/train\/\d+\/'/)
+              ) {
+                let n = t.attr("data-id"),
+                  r = `\u0412\u0430\u0448 \u043F\u0438\u0442\u043E\u043C\u0435\u0446 ${m.items[n].info.title.replace(/"/g, "")} \u0441\u0434\u0435\u043B\u0430\u043D \u0430\u043A\u0442\u0438\u0432\u043D\u044B\u043C!`,
+                  s = `
+          <div style="position: absolute">
+            <span class="agree" onclick="${`petarenaSetActive(${n}, 'battle'); moswar.showPopup('\u041F\u0438\u0442\u043E\u043C\u0435\u0446', '${r}', 5000);`}" style="cursor: pointer">
+              <i></i>
+            </span>
+          </div>`;
+                t.parent().prepend(s);
+              }
+            });
+          }),
+          (window.enhanceEquipmentItems = function () {
+            $('.equipment-cell .object-thumb .action[data-action="use"]').each(
+              function () {
+                let t = $(this);
+                t.prev(".multi-open").length === 0 &&
+                  t.parent().prepend(`
+          <b class="multi-open" style="cursor: pointer; background-color: #fdf179; color: green; font-size: 11px; position: absolute; margin: 0 1px;" onclick="multOpenItem(this);">
+            [#]
+          </b>`);
+              }
+            ),
+              $('.equipment-cell .object-thumb img[data-type="gift"]').each(
+                function () {
+                  let t = $(this);
+                  t.prev(".multi-open").length === 0 &&
+                    t.next(".count").length === 1 &&
+                    t.before(`
+          <b class="multi-open" style="cursor: pointer; background-color: #fdf179; color: green; font-size: 11px; position: absolute; margin: 0 1px;" onclick="multOpenGift(this);">
+            [#]
+          </b>`);
+                }
+              );
+          }),
+          (window.handleInventoryEnhancements = function () {
+            setTimeout(() => {
+              moveInventoryItemsToCategories();
+            }, 150);
+          }),
+          (window.moveInventoryItemsToCategories = function () {
+            let t = '.object-thumbs[htab="inventory"]',
+              e = '.object-thumbs[htab="clothes"]';
+            $(`${t} img[src$="box_perfume.png"],
+       ${t} img[src$="gift-wolf.png"],
+       ${t} img[src$="gold_phone_cert.png"],
+       ${t} img[src$="eye_phone_cert.png"]`)
+              .parents(".object-thumb")
+              .appendTo(t),
+              $(`${e} img[data-type="talisman"],
+       ${e} img[data-type="cologne"]`)
+                .parents(".object-thumb")
+                .prependTo(e),
+              $(`${e} img[data-type="phone"]`)
+                .parents(".object-thumb")
+                .appendTo(e);
+          }),
+          location.pathname.endsWith("/player/") &&
+            (eval(
+              "AngryAjax.goToUrl2 = " +
+                AngryAjax.goToUrl
+                  .toString()
+                  .replace("url = url.replace('#', '');", "")
+            ),
+            initializePlayerPageEnhancements());
+      },
+      Fn = function () {
+        typeof window.GM_deleteValue > "u" &&
+          ((window.GM_addStyle = (t) => {
+            let e = document.createElement("style");
+            (e.textContent = t), document.head.appendChild(e);
+          }),
+          (window.GM_deleteValue = (t) => {
+            localStorage.removeItem(t);
+          }),
+          (window.GM_getValue = (t, e) => {
+            let n = localStorage.getItem(t);
+            if (n === null) return e;
+            let o = n.charAt(0),
+              r = n.slice(1);
+            switch (o) {
+              case "b":
+                return r === "true";
+              case "n":
+                return Number(r);
+              default:
+                return r;
+            }
+          }),
+          (window.GM_log = (t) => {
+            console.log(t);
+          }),
+          (window.GM_openInTab = (t) => {
+            window.open(t, "_blank");
+          }),
+          (window.GM_registerMenuCommand = (t, e) => {}),
+          (window.GM_setValue = (t, e) => {
+            let n;
+            if (typeof e == "boolean") n = "b";
+            else if (typeof e == "number") n = "n";
+            else if (typeof e == "string") n = "s";
+            else throw new Error("Unsupported value type");
+            let o = `${n}${e}`;
+            localStorage.setItem(t, o);
+          }));
+        function getCurrentLocation() {
+          var t = $(".heading:first h2 span"),
+            e =
+              t.length > 0
+                ? t[0].getAttribute("class")
+                : $(".heading:first h2").html();
+          return e;
+        }
+        function getRealDoc() {
+          var t = top.document.getElementById("game-frame");
+          return t ? t.contentWindow.document : top.document;
+        }
+        function renderEatDopsButton() {
+          let t = Adoc.getElementById("dopings-accordion");
+          if (
+            !Adoc.getElementById("eat-button") &&
+            getCurrentLocation() === "pers" &&
+            t
+          ) {
+            let e = document.createElement("div");
+            (e.className = "button"),
+              (e.id = "eat-button"),
+              (e.innerHTML = `
+        <span class="f">
+          <i class="rl"></i>
+          <i class="bl"></i>
+          <i class="brc"></i>
+          <div id="aicheck" class="c">\u041E\u0431\u043E\u0436\u0440\u0430\u0442\u044C\u0441\u044F</div>
+        </span>
+      `),
+              $('div[htab="dopings"]').before(e),
+              e.addEventListener("click", selectDops, !1),
+              setTimeout(() => {
+                eatDops();
+              }, 1e3);
+          }
+        }
+        function selectDops() {
+          if (
+            getCurrentLocation() == "pers" &&
+            Adoc.getElementById("dopings-accordion")
+          ) {
+            var t = document.createElement("DIV");
+            t.setAttribute(
+              "style",
+              "display: block; top: 300px; width: 468px;"
+            ),
+              t.setAttribute("class", "alert  alert1"),
+              (t.id = "alert-main");
+            var e = document.createElement("DIV");
+            e.setAttribute("class", "padding"), t.appendChild(e);
+            var n = document.createElement("H2");
+            (n.innerHTML =
+              "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0434\u043E\u043F\u044B"),
+              e.appendChild(n);
+            var o = document.createElement("DIV");
+            o.setAttribute("class", "data");
+            var r = document.createElement("DIV");
+            o.appendChild(r), e.appendChild(o);
+            for (
+              var a = Adoc.getElementById("dopings-accordion").cloneNode(!0),
+                s = a.getElementsByClassName("object-thumb");
+              s.length > 0;
+
+            ) {
+              var c = document.createElement("DIV");
+              c.setAttribute(
+                "style",
+                "margin: 4px 1px 2px 2px;height: 72px; width: 72px;float:left;"
+              ),
+                c.setAttribute("name", "backGroundDiv");
+              var d = s[0].getElementsByClassName("action")[0],
+                l = s[0]
+                  .getElementsByClassName("padding")[0]
+                  .getElementsByTagName("img")[0];
+              if (d) {
+                if (d.className == "action disabled")
+                  c.style.backgroundColor = "red";
+                else {
+                  var p =
+                    "$.get('/player/json/" +
+                    d.getAttribute("data-action") +
+                    "/" +
+                    l.getAttribute("data-id") +
+                    "/', function(){moswar.showPopup('\u0413\u043E\u0442\u043E\u0432\u043E',m.items[" +
+                    l.getAttribute("data-id") +
+                    "].info.title, 2000);GM_setValue('listDopsN', Number(GM_getValue('listDopsN', ''))-1);if(Number(GM_getValue('listDopsN', ''))<1) {AngryAjax.goToUrl('/player/');}})";
+                  c.setAttribute("rel", p),
+                    c.addEventListener(
+                      "click",
+                      function () {
+                        onClickBackGroundDiv(this);
+                      },
+                      !1
+                    );
+                }
+                s[0].getElementsByClassName("padding")[0].removeChild(d);
+              }
+              s[0].setAttribute(
+                "style",
+                "margin: 2px 2px 2px 2px;height: 68px;"
+              ),
+                c.appendChild(s[0]),
+                r.appendChild(c);
+            }
+            var d = document.createElement("DIV");
+            d.setAttribute("class", "actions"),
+              d.setAttribute("style", "clear: both;");
+            var g = document.createElement("DIV");
+            g.setAttribute("class", "button"),
+              (g.innerHTML =
+                '<span class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c">\u041E\u041A</div></span>');
+            var u = document.createElement("DIV");
+            u.setAttribute("class", "button"),
+              (u.innerHTML =
+                '<span class="f"><i class="rl"></i><i class="bl"></i><i class="brc"></i><div class="c">\u041E\u0442\u043C\u0435\u043D\u0430</div></span>'),
+              d.appendChild(g),
+              d.appendChild(u),
+              o.appendChild(d),
+              Adoc.body.appendChild(t),
+              u.addEventListener(
+                "click",
+                function () {
+                  Adoc.body.removeChild(Adoc.getElementById("alert-main"));
+                },
+                !1
+              ),
+              g.addEventListener("click", createListDops, !1);
+          }
+        }
+        function createListDops() {
+          for (
+            var t = Adoc.getElementsByName("backGroundDiv"), e = "", n = 0;
+            n < t.length;
+            n++
+          )
+            t[n].style.backgroundColor == "green" &&
+              (e += t[n].getAttribute("rel") + "#|#");
+          (e = e.substring(0, e.length - 3)),
+            GM_setValue("listDops", e),
+            GM_setValue("listDopsN", e.split("#|#").length),
+            Adoc.body.removeChild(Adoc.getElementById("alert-main")),
+            eatDops();
+        }
+        function onClickBackGroundDiv(t) {
+          t.style.backgroundColor =
+            t.style.backgroundColor == "green" ? "transparent" : "green";
+        }
+        function eatDops() {
+          var listDops = GM_getValue("listDops", "");
+          if (listDops) {
+            var codeBlocks = listDops.split("#|#"),
+              codeBlock = codeBlocks[0],
+              cl = codeBlocks.length;
+            eval(codeBlock),
+              codeBlocks.shift(),
+              codeBlocks[0]
+                ? (GM_setValue("listDops", codeBlocks.join("#|#")),
+                  setTimeout(function () {
+                    eatDops();
+                  }, 1e3))
+                : GM_setValue("listDops", "");
+          }
+        }
+        var Adoc = getRealDoc();
+        renderEatDopsButton();
+      };
+    function ut() {
+      function t(n) {
+        let r = /^(\d\d).(\d\d).(\d{4}) (\d\d):(\d\d)$/.exec(n);
+        if (r) {
+          let [a, s, c, l, p, d] = r;
+          return new Date(Date.UTC(l, c - 1, s, p - 3, d, 59));
+        }
+        return null;
+      }
+      function e() {
+        let n = 0,
+          o = 0,
+          r = async (a) => {
+            let s = $(".help").find(`.brown:contains("${a}")`);
+            if (s.length > 0) {
+              let c = s.html().split("\u0434\u043E ")[1];
+              c && (localStorage.candyExpiration = c.split(" \u2014")[0]);
+            }
+          };
+        if (
+          (r(
+            "\u041A\u043E\u043D\u0444\u0435\u0442\u0430 \xAB\u0423\u043C\u043D\u0430\u044F\xBB"
+          ),
+          r(
+            "\u041A\u043E\u043D\u0444\u0435\u0442\u0430 \xAB\u0413\u043B\u0443\u043F\u0430\u044F\xBB"
+          ),
+          localStorage.candyExpiration)
+        ) {
+          let a = Number($("#servertime").attr("rel")),
+            s = t(localStorage.candyExpiration);
+          s && ((o = Math.round(s.getTime() / 1e3)), (n = o - a));
+        }
+        n < 0 && (n = 0),
+          !$("#candyTimer")[0] &&
+            n > 0 &&
+            ($("#personal")
+              .prepend(`<span id="candyTimer" style="position:absolute;top: -11px;left: 46px;padding: 2px;background-color:rgb(255, 227, 179);border-radius: 8px;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;border: 2px solid rgb(240 114 53);">
+          <span style="display: flex; gap: 2px;" class="expa"><i></i><b id="countdownTimer" timer="10" endtime="${o}"></b></span>
+        </span>`),
+            countdown("#countdownTimer", 0, !1, async function () {
+              await bt();
+            }),
+            countdown("#countdownTimer", 0));
+      }
+      e();
+    }
+    function Fe() {
+      (typeof window.localStorage.OptionsVar > "u" ||
+        window.localStorage.OptionsVar == null) &&
+        (window.localStorage.OptionsVar = JSON.stringify({ f_pickabil: "u" }));
+      var t = JSON.parse(window.localStorage.OptionsVar);
+      if (location.pathname.search(/^\/fight/) !== -1) {
+        let o = function () {
+            let c = JSON.parse(window.sessionStorage.fightLog),
+              l = parseInt($(".block-rounded").find(".current").text(), 10);
+            t.f_hidedead && $(".list-users").find(".dead").remove();
+            for (let p in c) {
+              if (
+                p ===
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]"
+              ) {
+                $(".log")
+                  .find(".log-panel")
+                  .append(`<div class="fight-log">${c[p].Turns}</div>`);
+                continue;
+              }
+              let d = "",
+                g = "";
+              for (let u in z)
+                if (u in c[p]) {
+                  let w = c[p][u],
+                    b = 0;
+                  u === "Hamsters"
+                    ? (b = w.Turns)
+                    : ((b = w.Turns - (l - w.Step)),
+                      (b = b > 0 && b <= w.Turns ? b : 0)),
+                    b > 0 &&
+                      ((d += z[u].image),
+                      b > 1 && (d += `<small>${b}</small>`)),
+                    "cnt" in w &&
+                      (g += `
+                <div style="display: inline-block; margin: 6px 0;">
+                  ${z[u].image}
+                  <small style="margin-top: -3px; display: block; position: absolute;">
+                    #${w.cnt}
+                  </small>
+                </div>`);
+                }
+              if (d || g) {
+                let u = $("#fightGroupForm")
+                  .find(`.user:contains("${p}")`)
+                  .first();
+                d && u.addClass("fight-log").prepend(`${d}<br>`),
+                  g &&
+                    u.parent().append(`
+                <br>
+                <div class="fight-log cnt" style="position: absolute; margin-top: -10px;">
+                  ${g}
+                </div>
+                <div style="height: 20px;"></div>
+              `);
+              }
+            }
+          },
+          r = function () {
+            let c = location.href.split("/")[2],
+              l = parseInt($(".block-rounded").find(".current").text(), 10),
+              p = window.sessionStorage;
+            (c !== p.FightId || !p.fightLog || p.fightLog === "undefined") &&
+              ((p.FightId = c), (p.fightLog = JSON.stringify({})));
+            var d = JSON.parse(window.sessionStorage.fightLog),
+              g = $(".block-rounded").find(".current").text(),
+              u = "",
+              w = "";
+            if (
+              $(".group")
+                .text()
+                .search(/Избранный/) !== -1
+            ) {
+              var b =
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439\xA0[??]";
+              d["\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]"] =
+                { Turns: "", Step: g };
+            }
+            if (
+              $(".group")
+                .text()
+                .includes(
+                  "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439"
+                )
+            ) {
+              let y =
+                "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439\xA0[??]";
+              d[y] = { Turns: "", Step: l };
+            }
+            function M(y, x, T, _, S) {
+              y = y.match(/(.{1,20})\s(\[.+?\])/);
+              let h = y ? `${y[1]}${y[2]}` : null;
+              if (!h) return;
+              if (
+                h ===
+                  "\u0418\u0437\u0431\u0440\u0430\u043D\u043D\u044B\u0439[??]" &&
+                _ !== "-1"
+              ) {
+                d[h].Turns += S === "#" ? S : `<br>${S}`;
+                return;
+              }
+              (d[h] = d[h] || {}), (d[h][x] = d[h][x] || {});
+              let F = d[h][x];
+              if (S === "#") {
+                F.cnt = "#";
+                return;
+              }
+              if (x === "Hamshams") {
+                (d[h].Hamsters = d[h].Hamsters || { Turns: "0" }),
+                  (d[h].Hamsters.Turns =
+                    parseInt(d[h].Hamsters.Turns, 10) + parseInt(_, 10));
+                return;
+              }
+              (F.Step = T),
+                (F.Turns = _),
+                z[x].cnt &&
+                  ((F.cnt = F.cnt ? F.cnt + 1 : 1),
+                  (F.Steps = F.Steps || []),
+                  F.Steps.includes(T) || F.Steps.push(T));
+            }
+            function q(y, x, T) {
+              let _ = [
+                  "Hamsters",
+                  "Snake",
+                  "superhit6",
+                  "MadTrump",
+                  "totem",
+                  "Knockout",
+                ],
+                S,
+                h = null;
+              switch (x) {
+                case "f":
+                  S = $(y)
+                    .find('[class^="name-"]')
+                    .first()
+                    .text()
+                    .match(/(.+?\[.+?\])/);
+                  break;
+                case "l":
+                  S = $(y)
+                    .find('[class^="name-"]')
+                    .last()
+                    .text()
+                    .match(/(.+?\[.+?\])/);
+                  break;
+                case "et":
+                  for (h = $(y).next(); !h.is(".easytarget"); ) h = h.next();
+                  S = q(h, "f", T);
+                  break;
+                case "h":
+                case "hh":
+                  (h = Ue(y)),
+                    h
+                      .text()
+                      .includes(
+                        "\u043E\u0442\u043F\u0440\u0443\u0436\u0438\u043D\u0438\u0432\u0430\u0435\u0442 \u0443\u0434\u0430\u0440"
+                      )
+                      ? (S = q(h, x === "h" ? "f" : "l", T))
+                      : (S = q(h, x === "h" ? "l" : "f", T));
+                  break;
+                default:
+                  break;
+              }
+              return (
+                S &&
+                  S[1] === b &&
+                  _.includes(T) &&
+                  (w = `<small>${
+                    h
+                      .text()
+                      .replace(/\s{2,}/g, " ")
+                      .match(/^\d?([\s\S]+?\][\s\S]+?\])/)[1]
+                  }</small>`),
+                S
+              );
+            }
